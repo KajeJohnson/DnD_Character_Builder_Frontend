@@ -36,3 +36,4 @@ export async function getLoginUser(uid: string) {
 		params: { uid },
 	});
 	return user;
+}
