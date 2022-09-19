@@ -9,7 +9,10 @@ export default function LoginPage() {
   return (
     <div>
       <h1>Welcome, Traveler! </h1>
-      <h3>C'mon in and hang</h3>
+      <h3>
+        C'mon in and get cozy with folk ye know. Or ye can make some new
+        friends!
+      </h3>
       <button onClick={handleLogin}>Log in with google</button>
       <p>This character builder is made for D&D5e</p>
     </div>
