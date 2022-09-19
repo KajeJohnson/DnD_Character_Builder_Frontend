@@ -10,7 +10,6 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
 	return (
 		<div className="App">
-			<div className="bg-[url('/img/gobbyboiii.png')]"></div>
 			<Routes>
 				<Route path="/" element={<LoginPage />} />
 			</Routes>
