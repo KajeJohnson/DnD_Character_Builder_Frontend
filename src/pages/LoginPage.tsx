@@ -1,14 +1,17 @@
 import { loginWithGoogle } from "../services/auth.service";
 
 export default function LoginPage() {
-	const handleLogin = async () => {
-		const user = await loginWithGoogle();
-		console.log(user);
-	};
+  const handleLogin = async () => {
+    const user = await loginWithGoogle();
+    console.log(user);
+  };
 
-	return (
-		<div>
-			<button onClick={handleLogin}>Log in with google</button>
-		</div>
-	);
+  return (
+    <div>
+      <h1>Welcome, Traveler! </h1>
+      <h3>C'mon in and hang</h3>
+      <button onClick={handleLogin}>Log in with google</button>
+      <p>This character builder is made for D&D5e</p>
+    </div>
+  );
 }

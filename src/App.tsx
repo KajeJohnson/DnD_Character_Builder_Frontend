@@ -6,13 +6,12 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-	return (
-		<div className="App">
-			<TestRaceList />
-			<SignupPage />
-			<LoginPage />
-		</div>
-	);
+  return (
+    <div className="App">
+      {/* <SignupPage /> */}
+      <LoginPage />
+    </div>
+  );
 }
 
 export default App;
