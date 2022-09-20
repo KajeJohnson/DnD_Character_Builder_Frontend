@@ -16,7 +16,7 @@ export function useAuth() {
 					setUser(user);
 				} else {
 					if (!firebaseUser) {
-						navigate("/login");
+						navigate("/homepage");
 					}
 				}
 			}
