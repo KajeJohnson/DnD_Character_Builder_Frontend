@@ -6,12 +6,21 @@ import TestRaceList from "./components/test";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
+import HomePage from "./pages/HomePage";
 
 function App() {
 	return (
 		<div className="App">
 			<Routes>
 				<Route path="/" element={<LoginPage />} />
+				<Route
+					path="/homepage"
+					element={
+						<PrivateRoute>
+							<HomePage />
+						</PrivateRoute>
+					}
+				/>
 			</Routes>
 		</div>
 	);
