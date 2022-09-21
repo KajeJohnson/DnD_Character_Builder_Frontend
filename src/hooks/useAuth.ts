@@ -5,24 +5,25 @@ import { firebaseAuth } from "../libs/firebase";
 import { getLoginUser } from "../services/auth.service";
 
 export function useAuth() {
-	const { user, setUser } = useContext(AuthContext);
-	const navigate = useNavigate();
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		const unsubscribe = firebaseAuth.onAuthStateChanged(
-			async (firebaseUser) => {
-				if (firebaseUser && !user) {
-					const user = await getLoginUser(firebaseUser.uid);
-					setUser(user);
-				} else {
-					if (!firebaseUser) {
-						navigate("/homepage");
-					}
-				}
-			}
-		);
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged(
+      async (firebaseUser) => {
+        if (firebaseUser && !user) {
+          const user = await getLoginUser(firebaseUser.uid);
+          setUser(user);
+        } else {
+          if (!firebaseUser) {
+            navigate("/login");
+            //changed to login from homepage -kj
+          }
+        }
+      }
+    );
 
-		return () => unsubscribe();
-	}, [navigate, setUser, user]);
-	return user;
+    return () => unsubscribe();
+  }, [navigate, setUser, user]);
+  return user;
 }

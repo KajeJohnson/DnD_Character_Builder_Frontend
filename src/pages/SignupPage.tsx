@@ -3,13 +3,22 @@ import { signUpWithGoogle } from "../services/auth.service";
 import { loginWithGoogle } from "../services/auth.service";
 // import { Anchor, Paper, Title, Text, Container, Button } from "@mantine/core";
 import gobbyboiii from "../img/gobbyboiii.png";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 export default function SignupPage() {
+  //   const handleSignup = async () => {
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // const user = await signUpWithGoogle();
+  // console.log(user);
+
   const handleSignup = async () => {
     const user = await signUpWithGoogle();
-    console.log(user);
+    setUser(user);
+    navigate("/");
   };
-
   return (
     <div
       style={{
