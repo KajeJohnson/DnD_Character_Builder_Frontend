@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
-import { Spell } from "../types/characterOptions/spells.types";
+import { fetchFeatures } from "../services/builder.service";
+import { Feature } from "../types/characterOptions/features.types";
 
-export default function SpellListBuilder () {
-    const [spellOps, setSpellOps] = useState<Spell[]>([]);
-    const [charSpells, setCharSpells] = useState<Spell[]>([]);
+export default function FeatureListBuilder () {
+    const [featOps, setFeatOps] = useState<Feature[]>([]);
+    const [charFeats, setCharFeats] = useState<Feature[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchSpells().then((spells) => {
-          setSpellOps(spells);
+        fetchFeatures().then((features) => {
+          setFeatOps(features);
         });
       }, []);
 
-    function addSpell(selectedSpell: Spell) {
-        const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
-        if (!spellAlreadyChosen) {
-        setCharSpells([selectedSpell, ...charSpells]);
+    function addFeat(selectedFeat: Feature) {
+        const featAlreadyChosen = charFeats.find((feature) => feature.name === selectedFeat.name);
+        if (!featAlreadyChosen) {
+        setCharFeats([selectedFeat, ...charFeats]);
         }
     }
 
-    function removeSpell(name: string) {
-        const index = charSpells.findIndex((spell) => spell.name === name);
-        let newArray = charSpells.slice(0)
+    function removeFeat(name: string) {
+        const index = charFeats.findIndex((feature) => feature.name === name);
+        let newArray = charFeats.slice(0)
         newArray.splice(index, 1)
-        setCharSpells(newArray);
+        setCharFeats(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -37,19 +37,19 @@ export default function SpellListBuilder () {
 
       return (
         <div>
-            <h3> Spells </h3>
+            <h3> Features </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {spellOps.map((spell) => (
-              <div key={spell._id} style={styles.item}>
+          {featOps.map((feature) => (
+              <div key={feature.index} style={styles.item}>
 
-                    {spell.name}
+                    {feature.name}
 
-                    <button onClick={() => addSpell(spell)}>
-                        add spell
+                    <button onClick={() => addFeat(feature)}>
+                        add feature
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
-                        remove spell
+                    <button onClick={() => removeFeat(feature.name)}>
+                        remove  feature
                     </button>
             </div>
           ))}

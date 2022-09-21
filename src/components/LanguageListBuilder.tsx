@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
-import { Spell } from "../types/characterOptions/spells.types";
+import { fetchLanguages } from "../services/builder.service";
+import { Language } from "../types/characterOptions/languages.types";
 
-export default function SpellListBuilder () {
-    const [spellOps, setSpellOps] = useState<Spell[]>([]);
-    const [charSpells, setCharSpells] = useState<Spell[]>([]);
+export default function LanguageListBuilder () {
+    const [langOps, setLangOps] = useState<Language[]>([]);
+    const [charLangs, setCharLangs] = useState<Language[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchSpells().then((spells) => {
-          setSpellOps(spells);
+        fetchLanguages().then((languages) => {
+          setLangOps(languages);
         });
       }, []);
 
-    function addSpell(selectedSpell: Spell) {
-        const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
-        if (!spellAlreadyChosen) {
-        setCharSpells([selectedSpell, ...charSpells]);
+    function addLang(selectedLang: Language) {
+        const langAlreadyChosen = charLangs.find((language) => language.name === selectedLang.name);
+        if (!langAlreadyChosen) {
+        setCharLangs([selectedLang, ...charLangs]);
         }
     }
 
-    function removeSpell(name: string) {
-        const index = charSpells.findIndex((spell) => spell.name === name);
-        let newArray = charSpells.slice(0)
+    function removeLang(name: string) {
+        const index = charLangs.findIndex((language) => language.name === name);
+        let newArray = charLangs.slice(0)
         newArray.splice(index, 1)
-        setCharSpells(newArray);
+        setCharLangs(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -37,19 +37,19 @@ export default function SpellListBuilder () {
 
       return (
         <div>
-            <h3> Spells </h3>
+            <h3> Languages </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {spellOps.map((spell) => (
-              <div key={spell._id} style={styles.item}>
+          {langOps.map((language) => (
+              <div key={language.index} style={styles.item}>
 
-                    {spell.name}
+                    {language.name}
 
-                    <button onClick={() => addSpell(spell)}>
-                        add spell
+                    <button onClick={() => addLang(language)}>
+                        add language
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
-                        remove spell
+                    <button onClick={() => removeLang(language.name)}>
+                        remove  language
                     </button>
             </div>
           ))}

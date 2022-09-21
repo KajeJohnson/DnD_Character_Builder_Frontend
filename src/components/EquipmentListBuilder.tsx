@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
-import { Spell } from "../types/characterOptions/spells.types";
+import { fetchEquipments } from "../services/builder.service";
+import { EquipmentType } from "../types/characterOptions/equipment.types";
 
-export default function SpellListBuilder () {
-    const [spellOps, setSpellOps] = useState<Spell[]>([]);
-    const [charSpells, setCharSpells] = useState<Spell[]>([]);
+export default function EquipmentListBuilder () {
+    const [equipmentOps, setEquipmentOps] = useState<EquipmentType[]>([]);
+    const [charEquips, setCharEquips] = useState<EquipmentType[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchSpells().then((spells) => {
-          setSpellOps(spells);
+        fetchEquipments().then((equipments) => {
+          setEquipmentOps(equipments);
         });
       }, []);
 
-    function addSpell(selectedSpell: Spell) {
-        const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
-        if (!spellAlreadyChosen) {
-        setCharSpells([selectedSpell, ...charSpells]);
+    function addEquip(selectedEquipment: EquipmentType) {
+        const equipAlreadyChosen = charEquips.find((equipment) => equipment.name === selectedEquipment.name);
+        if (!equipAlreadyChosen) {
+        setCharEquips([selectedEquipment, ...charEquips]);
         }
     }
 
-    function removeSpell(name: string) {
-        const index = charSpells.findIndex((spell) => spell.name === name);
-        let newArray = charSpells.slice(0)
+    function removeEquip(name: string) {
+        const index = charEquips.findIndex((equipment) => equipment.name === name);
+        let newArray = charEquips.slice(0)
         newArray.splice(index, 1)
-        setCharSpells(newArray);
+        setCharEquips(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -37,19 +37,19 @@ export default function SpellListBuilder () {
 
       return (
         <div>
-            <h3> Spells </h3>
+            <h3> Equipment </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {spellOps.map((spell) => (
-              <div key={spell._id} style={styles.item}>
+          {equipmentOps.map((equipment) => (
+              <div key={equipment.index} style={styles.item}>
 
-                    {spell.name}
+                    {equipment.name}
 
-                    <button onClick={() => addSpell(spell)}>
-                        add spell
+                    <button onClick={() => addEquip(equipment)}>
+                        add equipment
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
-                        remove spell
+                    <button onClick={() => removeEquip(equipment.name)}>
+                        remove  equipment
                     </button>
             </div>
           ))}

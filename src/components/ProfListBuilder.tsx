@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
-import { Spell } from "../types/characterOptions/spells.types";
+import { fetchProficiencies } from "../services/builder.service";
+import { Proficiency } from "../types/characterOptions/proficiencies.types";
 
-export default function SpellListBuilder () {
-    const [spellOps, setSpellOps] = useState<Spell[]>([]);
-    const [charSpells, setCharSpells] = useState<Spell[]>([]);
+export default function ProficiencyListBuilder () {
+    const [profOps, setProfOps] = useState<Proficiency[]>([]);
+    const [charProfs, setCharProfs] = useState<Proficiency[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchSpells().then((spells) => {
-          setSpellOps(spells);
+        fetchProficiencies().then((proficiencies) => {
+          setProfOps(proficiencies);
         });
       }, []);
 
-    function addSpell(selectedSpell: Spell) {
-        const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
-        if (!spellAlreadyChosen) {
-        setCharSpells([selectedSpell, ...charSpells]);
+    function addProf(selectedProf: Proficiency) {
+        const profAlreadyChosen = charProfs.find((prof) => prof.name === selectedProf.name);
+        if (!profAlreadyChosen) {
+        setCharProfs([selectedProf, ...charProfs]);
         }
     }
 
-    function removeSpell(name: string) {
-        const index = charSpells.findIndex((spell) => spell.name === name);
-        let newArray = charSpells.slice(0)
+    function removeProf(name: string) {
+        const index = charProfs.findIndex((prof) => prof.name === name);
+        let newArray = charProfs.slice(0)
         newArray.splice(index, 1)
-        setCharSpells(newArray);
+        setCharProfs(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -37,19 +37,19 @@ export default function SpellListBuilder () {
 
       return (
         <div>
-            <h3> Spells </h3>
+            <h3> Proficiencies </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {spellOps.map((spell) => (
-              <div key={spell._id} style={styles.item}>
+          {profOps.map((proficiency) => (
+              <div key={proficiency.index} style={styles.item}>
 
-                    {spell.name}
+                    {proficiency.name}
 
-                    <button onClick={() => addSpell(spell)}>
-                        add spell
+                    <button onClick={() => addProf(proficiency)}>
+                        add proficiency
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
-                        remove spell
+                    <button onClick={() => removeProf(proficiency.name)}>
+                        remove  proficiency
                     </button>
             </div>
           ))}

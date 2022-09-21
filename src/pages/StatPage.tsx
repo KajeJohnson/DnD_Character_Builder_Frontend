@@ -25,7 +25,6 @@ export default function StatPage () {
                     <p>{character?.armorClass}</p>
                     <p>{character?.speed}</p>
                     <p>{character?.hitPoints}</p>
-                    <p>{character?.attacks}</p>
                     {/* <p>{character?.spells!}</p> // maybe use a component for the lists?
                     <p>{character?.proficiencies!}</p>
                     <p>{character?.languages!}</p>

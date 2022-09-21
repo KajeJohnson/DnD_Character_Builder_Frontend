@@ -7,10 +7,12 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
+import CharBuilder from "./pages/CharBuilderPage";
 
 function App() {
 	return (
 		<div className="App">
+			{/* <CharBuilder /> */}
 			<Routes>
 				<Route path="/" element={<LoginPage />} />
 				<Route

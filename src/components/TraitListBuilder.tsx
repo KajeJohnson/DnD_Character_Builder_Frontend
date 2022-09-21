@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
-import { Spell } from "../types/characterOptions/spells.types";
+import { fetchTraits } from "../services/builder.service";
+import { Trait } from "../types/characterOptions/traits.types";
 
-export default function SpellListBuilder () {
-    const [spellOps, setSpellOps] = useState<Spell[]>([]);
-    const [charSpells, setCharSpells] = useState<Spell[]>([]);
+export default function TraitListBuilder () {
+    const [traitOps, setTraitOps] = useState<Trait[]>([]);
+    const [charTraits, setCharTraits] = useState<Trait[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchSpells().then((spells) => {
-          setSpellOps(spells);
+        fetchTraits().then((traits) => {
+          setTraitOps(traits);
         });
       }, []);
 
-    function addSpell(selectedSpell: Spell) {
-        const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
-        if (!spellAlreadyChosen) {
-        setCharSpells([selectedSpell, ...charSpells]);
+    function addTrait(selectedTrait: Trait) {
+        const traitAlreadyChosen = charTraits.find((trait) => trait.name === selectedTrait.name);
+        if (!traitAlreadyChosen) {
+        setCharTraits([selectedTrait, ...charTraits]);
         }
     }
 
-    function removeSpell(name: string) {
-        const index = charSpells.findIndex((spell) => spell.name === name);
-        let newArray = charSpells.slice(0)
+    function removeTrait(name: string) {
+        const index = charTraits.findIndex((trait) => trait.name === name);
+        let newArray = charTraits.slice(0)
         newArray.splice(index, 1)
-        setCharSpells(newArray);
+        setCharTraits(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -37,19 +37,19 @@ export default function SpellListBuilder () {
 
       return (
         <div>
-            <h3> Spells </h3>
+            <h3> Traits </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {spellOps.map((spell) => (
-              <div key={spell._id} style={styles.item}>
+          {traitOps.map((trait) => (
+              <div key={trait.index} style={styles.item}>
 
-                    {spell.name}
+                    {trait.name}
 
-                    <button onClick={() => addSpell(spell)}>
-                        add spell
+                    <button onClick={() => addTrait(trait)}>
+                        add trait
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
-                        remove spell
+                    <button onClick={() => removeTrait(trait.name)}>
+                        remove  trait
                     </button>
             </div>
           ))}
