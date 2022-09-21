@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Character } from "../types/character.types"
 import { Class } from "../types/characterOptions/classes.types";
+import { Language, Languages } from "../types/characterOptions/languages.types";
 
 export default function StatPage () {
     const [character, setCharacter] = useState<Character>();
@@ -25,12 +26,12 @@ export default function StatPage () {
                     <p>{character?.speed}</p>
                     <p>{character?.hitPoints}</p>
                     <p>{character?.attacks}</p>
-                    {/* <p>{character?.spells.map()}</p>
-                    <p>{character?.proficiencies}</p>
-                    <p>{character?.languages}</p>
-                    <p>{character?.equipment}</p>
-                    <p>{character?.features}</p>
-                    <p>{character?.traits}</p> */}
+                    {/* <p>{character?.spells!}</p> // maybe use a component for the lists?
+                    <p>{character?.proficiencies!}</p>
+                    <p>{character?.languages!}</p>
+                    <p>{character?.equipment!}</p>
+                    <p>{character?.features!}</p>
+                    <p>{character?.traits!}</p> */}
         </div>
     )
 

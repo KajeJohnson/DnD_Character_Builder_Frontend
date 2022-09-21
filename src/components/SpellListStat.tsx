@@ -7,7 +7,7 @@ interface SpellProps {
 export default function SpellListStatForPage ({ spells }: SpellProps) {
     return (
         <div>
-            {/* {spells.map((spell) =>{
+            {/* {spells!.map((spell) =>{
                 <p>{spell.name}</p>
             })} */}
         </div>
