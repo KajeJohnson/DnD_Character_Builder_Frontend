@@ -8,35 +8,37 @@ import { getUserCharacters } from "../services/character.service";
 import { Character } from "../types/character.types";
 
 export default function HomePage() {
-  const { user } = useContext(AuthContext);
-  // const [opened, handlers] = useDisclosure(false);
-  //do we need character in place of user here?
+	const { user } = useContext(AuthContext);
+	// const [opened, handlers] = useDisclosure(false);
+	//do we need character in place of user here?
 
-  const characters = [
-    { _id: "test", uid: "test", email: "test", displayName: "test" },
-  ];
+	const characters = [
+		{ _id: "test", uid: "test", email: "test", displayName: "test" },
+	];
 
-  //added async
-  //   const characters = useQuery(
-  //     [{ _id: "test", uid: "test", email: "test", displayName: "test" }],
-  //     async () => await getUserCharacters(user?._id as string)
-  //   );
+	//added async
+	//   const characters = useQuery(
+	//     [{ _id: "test", uid: "test", email: "test", displayName: "test" }],
+	//     async () => await getUserCharacters(user?._id as string)
+	//   );
 
-  // const { data: characters } = useQuery(
-  // 	["characters", user?._id],
-  // 	async () => await getUserCharacters(user?._id as string)
-  // );
+	// const { data: characters } = useQuery(
+	// 	["characters", user?._id],
+	// 	async () => await getUserCharacters(user?._id as string)
+	// );
 
-  return (
-    <div>
-      <button>New character</button>
-      {characters && <CharacterList characters={characters} />}
-      {/* below div is for testing - delete later -kj */}
-      <div>
-        <Link to={"/signup"}>
-          <button>Sign up</button>
-        </Link>
-      </div>
-    </div>
-  );
+	console.log("user", user);
+
+	return (
+		<div>
+			<button>New character</button>
+			{characters && <CharacterList characters={characters} />}
+			{/* below div is for testing - delete later -kj */}
+			<div>
+				<Link to={"/signup"}>
+					<button>Sign up</button>
+				</Link>
+			</div>
+		</div>
+	);
 }
