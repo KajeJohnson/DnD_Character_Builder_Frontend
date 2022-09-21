@@ -12,7 +12,7 @@ import CharBuilder from "./pages/CharBuilderPage";
 function App() {
   return (
     <div className="App">
-      {/* <CharBuilder /> */}
+      <CharBuilder />
       <Routes>
         {/* <Route
           path="/"

@@ -8,6 +8,7 @@ import LanguageListBuilder from "../components/LanguageListBuilder";
 import EquipmentListBuilder from "../components/EquipmentListBuilder";
 import FeatureListBuilder from "../components/FeatureListBuilder";
 import TraitListBuilder from "../components/TraitListBuilder";
+import { Character } from "../types/character.types";
 
 export default function CharBuilder () {
     const level = 1;
@@ -25,11 +26,18 @@ export default function CharBuilder () {
     const [armorClass, setArmorClass] = useState<number>();
     const [speed, setSpeed] = useState<number>();
     const [hitPoints, setHitPoints] = useState<number>();
+    const [character, setCharacter] = useState<Character>();
     
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        // right now just an empty function
+        // return setCharacter({
+        //     ...character,
+        //     characterName: name,
+        //     race: race,
+        //     class: charClass,
+
+        // });
       }
 
       // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
@@ -53,6 +61,7 @@ export default function CharBuilder () {
                 <select
                     onChange={(e: any) => setRace(e.target.value)}
                     aria-label="Select Character Race"
+                    name="race"
                 >
                     <option value="/api/races/dragonborn">Dragonborn</option>
                     <option value="/api/races/dwarf">Dwarf</option>
@@ -68,6 +77,7 @@ export default function CharBuilder () {
                 <select
                     onChange={(e: any) => setCharClass(e.target.value)}
                     aria-label="Select Character Class"
+                    name="class"
                 >
                     <option value="/api/classes/barbarian">Barbarian</option>
                     <option value="/api/classes/bard">Bard</option>
@@ -86,6 +96,7 @@ export default function CharBuilder () {
                 <select
                     onChange={(e: any) => setAlignment(e.target.value)}
                     aria-label="Select Character Alignment"
+                    name="alignment"
                 >
                     <option value="/api/alignments/chaotic-evil">Chaotic-Evil</option>
                     <option value="/api/alignments/chaotic-good">Chaotic-Good</option>
@@ -102,42 +113,42 @@ export default function CharBuilder () {
                     Enter in yer stats: 
                         <input
                             type="number"
-                            name="stats"
+                            name="strength"
                             value={strength}
                             placeholder="Strength"
                             onChange={(e) => setStrength(Number(e.target.value))}
                         />
                         <input
                             type="number"
-                            name="stats"
+                            name="dexterity"
                             value={dexterity}
                             placeholder="Dexterity"
                             onChange={(e) => setDexterity(Number(e.target.value))}
                         />
                         <input
                             type="number"
-                            name="stats"
+                            name="constitution"
                             value={constitution}
                             placeholder="Constitution"
                             onChange={(e) => setConstitution(Number(e.target.value))}
                         />
                         <input
                             type="number"
-                            name="stats"
+                            name="intelligence"
                             value={intelligence}
                             placeholder="Intelligence"
                             onChange={(e) => setIntelligence(Number(e.target.value))}
                         />
                         <input
                             type="number"
-                            name="stats"
+                            name="wisdom"
                             value={wisdom}
                             placeholder="Wisdom"
                             onChange={(e) => setWisdom(Number(e.target.value))}
                         />
                         <input
                             type="number"
-                            name="stats"
+                            name="charisma"
                             value={charisma}
                             placeholder="Charisma"
                             onChange={(e) => setCharisma(Number(e.target.value))}
@@ -148,7 +159,7 @@ export default function CharBuilder () {
                     Enter in yer armor class: 
                         <input
                             type="number"
-                            name="AC"
+                            name="armorClass"
                             value={armorClass}
                             placeholder="Armor Class"
                             onChange={(e) => setArmorClass(Number(e.target.value))}

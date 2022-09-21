@@ -7,6 +7,9 @@ export default function FeatureListBuilder () {
     const [charFeats, setCharFeats] = useState<Feature[]>([]);
     const [progress, setProgress] = useState(0);
 
+    // how to set the charFeats to be added to a player's character data?
+
+
     useEffect(() => {
         fetchFeatures().then((features) => {
           setFeatOps(features);

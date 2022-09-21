@@ -7,6 +7,9 @@ export default function EquipmentListBuilder () {
     const [charEquips, setCharEquips] = useState<EquipmentType[]>([]);
     const [progress, setProgress] = useState(0);
 
+    // how to set the charEquips to be added to a player's character data?
+
+
     useEffect(() => {
         fetchEquipments().then((equipments) => {
           setEquipmentOps(equipments);

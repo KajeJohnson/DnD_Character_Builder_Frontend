@@ -7,6 +7,9 @@ export default function LanguageListBuilder () {
     const [charLangs, setCharLangs] = useState<Language[]>([]);
     const [progress, setProgress] = useState(0);
 
+    // how to set the charLangs to be added to a player's character data?
+
+
     useEffect(() => {
         fetchLanguages().then((languages) => {
           setLangOps(languages);

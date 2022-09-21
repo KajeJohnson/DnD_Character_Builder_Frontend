@@ -7,6 +7,9 @@ export default function ProficiencyListBuilder () {
     const [charProfs, setCharProfs] = useState<Proficiency[]>([]);
     const [progress, setProgress] = useState(0);
 
+    // how to set the charProfs to be added to a player's character data?
+
+
     useEffect(() => {
         fetchProficiencies().then((proficiencies) => {
           setProfOps(proficiencies);

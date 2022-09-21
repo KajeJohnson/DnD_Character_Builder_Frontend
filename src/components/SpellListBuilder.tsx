@@ -7,6 +7,8 @@ export default function SpellListBuilder () {
     const [charSpells, setCharSpells] = useState<Spell[]>([]);
     const [progress, setProgress] = useState(0);
 
+    // how to set the charSpells to be added to a player's character data?
+
     useEffect(() => {
         fetchSpells().then((spells) => {
           setSpellOps(spells);
