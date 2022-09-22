@@ -1,30 +1,35 @@
-import { loginWithGoogle } from "../services/auth.service";
+import { loginWithGoogle, signUpWithGoogle } from "../services/auth.service";
 import gobbyboiii from "../img/gobbyboiii.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 export default function LoginPage() {
-	const { user } = useContext(AuthContext);
+	var { user } = useContext(AuthContext);
 	//added line 8 -KJ
 	const navigate = useNavigate();
 
 	const handleLogin = async () => {
-		const user = await loginWithGoogle();
-		// console.log(user);
-		// navigate("/homepage");
+		user = await loginWithGoogle();
 
-		if (user) {
-			navigate("/homepage");
+		if (!user) {
+			user = await signUpWithGoogle();
 		}
+		// const user = await signUpWithGoogle();
+		// console.log(user);
+		navigate("/homepage");
+
+		// if (user) {
+		// 	navigate("/homepage");
+		// }
 	};
 
-	if (user) {
-		navigate("/homepage");
-	}
-	if (!user) {
-		navigate("/signup");
-	}
+	// if (user) {
+	// 	navigate("/homepage");
+	// }
+	// if (!user) {
+	// 	navigate("/signup");
+	// }
 
 	//do we need homepage here?
 	return (
@@ -50,11 +55,14 @@ export default function LoginPage() {
 					<button onClick={handleLogin}>Log in with google</button>
 					{/* </Link> */}
 					<h4>This character builder is made for D&D5e</h4>
-					<Link to={"/signup"}>
+					{/* <Link to={"/signup"}>
 						<button>Sign up</button>
-					</Link>
+					</Link> */}
 				</div>
 			</div>
 		</div>
 	);
+}
+function signupWithGoogle() {
+	throw new Error("Function not implemented.");
 }
