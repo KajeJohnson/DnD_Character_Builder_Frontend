@@ -10,11 +10,11 @@ import HomePage from "./pages/HomePage";
 import CharBuilder from "./pages/CharBuilderPage";
 
 function App() {
-	return (
-		<div className="App">
-			{/* <CharBuilder /> */}
-			<Routes>
-				{/* <Route
+  return (
+    <div className="App">
+      {/* <CharBuilder /> */}
+      <Routes>
+        {/* <Route
           path="/"
           element={
             <PrivateRoute>
@@ -30,19 +30,20 @@ function App() {
             </PrivateRoute>
           }
         /> */}
-				<Route
-					path="/homepage"
-					element={
-						<PrivateRoute>
-							<HomePage />
-						</PrivateRoute>
-					}
-				/>
-				<Route path="/signup" element={<SignupPage />} />
-				<Route path="/" element={<LoginPage />} />
-			</Routes>
-		</div>
-	);
+        <Route
+          path="/homepage"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/createCharacter" element={<CharBuilder />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
