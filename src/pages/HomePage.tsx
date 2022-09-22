@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CharacterList from "../components/CharacterList";
 import { AuthContext } from "../context/auth.context";
 import { logout } from "../services/auth.service";
+import inside from "../img/inside.png";
 import { getUserCharacters } from "../services/character.service";
 import { Character } from "../types/character.types";
 
@@ -36,15 +37,26 @@ export default function HomePage() {
 
   return (
     <div>
-      <Link to={"/createCharacter"}>
-        <button>New character</button>
-        {characters && <CharacterList characters={characters} />}
-      </Link>
-      {/* below div is for testing - delete later -kj */}
-      <div>
-        <Link to={"/"}>
-          <button onClick={handleLogout}>Logout</button>
+      <div
+        style={{
+          backgroundImage: `url(${inside})`,
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          margin: "0",
+        }}
+      >
+        <Link to={"/createCharacter"}>
+          <button>New character</button>
+          {characters && <CharacterList characters={characters} />}
         </Link>
+        {/* below div is for testing - delete later -kj */}
+        <div>
+          <Link to={"/"}>
+            <button onClick={handleLogout}>Logout</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
