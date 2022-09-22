@@ -1,37 +1,43 @@
-import { loginWithGoogle, signUpWithGoogle } from "../services/auth.service";
+import {
+	authenticateWithGoogle,
+	loginWithGoogle,
+	signUpWithGoogle,
+} from "../services/auth.service";
 import gobbyboiii from "../img/gobbyboiii.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { getUser } from "../services/user.service";
+import { sign } from "crypto";
 
 export default function LoginPage() {
-	var { user } = useContext(AuthContext);
-	//added line 8 -KJ
 	const navigate = useNavigate();
 
 	const handleLogin = async () => {
-		user = await loginWithGoogle();
+		let user = await signUpWithGoogle();
+		console.log(user.uid);
+		const userId = await getUser(user.uid);
+		console.log(userId);
+		// // if (userId) {
+		// // 	user = await loginWithGoogle();
+		// // }
 
-		if (!user) {
-			user = await signUpWithGoogle();
-		}
-		// const user = await signUpWithGoogle();
-		// console.log(user);
 		navigate("/homepage");
+
+		// console.log(userId);
+		// console.log(user.uid);
 
 		// if (user) {
 		// 	navigate("/homepage");
 		// }
+
+		// if (!getUser(user.uid)) {
+		// 	navigate("/signup");
+		// } else {
+		// 	navigate("/homepage");
+		// }
 	};
 
-	// if (user) {
-	// 	navigate("/homepage");
-	// }
-	// if (!user) {
-	// 	navigate("/signup");
-	// }
-
-	//do we need homepage here?
 	return (
 		<div>
 			<div
