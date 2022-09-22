@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { fetchFeatures } from "../services/builder.service";
 import { Feature } from "../types/characterOptions/features.types";
 
-export default function FeatureListBuilder () {
+interface Props {
+    onChange: (features: Feature[]) => void;
+}
+
+export default function FeatureListBuilder ({ onChange }: Props) {
     const [featOps, setFeatOps] = useState<Feature[]>([]);
     const [charFeats, setCharFeats] = useState<Feature[]>([]);
     const [progress, setProgress] = useState(0);
-
-    // how to set the charFeats to be added to a player's character data?
-
 
     useEffect(() => {
         fetchFeatures().then((features) => {
@@ -57,6 +58,7 @@ export default function FeatureListBuilder () {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charFeats as Feature[])}}>add selected features to character</button>
         </div>
       );
 }

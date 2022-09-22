@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { fetchEquipments } from "../services/builder.service";
 import { EquipmentType } from "../types/characterOptions/equipment.types";
 
-export default function EquipmentListBuilder () {
+interface Props {
+    onChange: (equipments: EquipmentType[]) => void;
+}
+
+export default function EquipmentListBuilder ({ onChange }: Props) {
     const [equipmentOps, setEquipmentOps] = useState<EquipmentType[]>([]);
     const [charEquips, setCharEquips] = useState<EquipmentType[]>([]);
     const [progress, setProgress] = useState(0);
@@ -57,6 +61,7 @@ export default function EquipmentListBuilder () {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charEquips as EquipmentType[])}}>add selected equipment to character</button>
         </div>
       );
 }

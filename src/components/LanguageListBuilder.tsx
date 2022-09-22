@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { fetchLanguages } from "../services/builder.service";
 import { Language } from "../types/characterOptions/languages.types";
 
-export default function LanguageListBuilder () {
+interface Props {
+    onChange: (languages: Language[]) => void;
+}
+
+export default function LanguageListBuilder ({ onChange }: Props) {
     const [langOps, setLangOps] = useState<Language[]>([]);
     const [charLangs, setCharLangs] = useState<Language[]>([]);
     const [progress, setProgress] = useState(0);
-
-    // how to set the charLangs to be added to a player's character data?
-
 
     useEffect(() => {
         fetchLanguages().then((languages) => {
@@ -57,6 +58,7 @@ export default function LanguageListBuilder () {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charLangs as Language[])}}>add selected languages to character</button>
         </div>
       );
 }

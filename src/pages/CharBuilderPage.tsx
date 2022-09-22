@@ -11,6 +11,11 @@ import TraitListBuilder from "../components/TraitListBuilder";
 import { Character } from "../types/character.types";
 import { fetchAlignments, fetchClasses, fetchRaces, fetchSpells } from "../services/builder.service";
 import { Spell } from "../types/characterOptions/spells.types";
+import { Proficiency } from "../types/characterOptions/proficiencies.types";
+import { Language } from "../types/characterOptions/languages.types";
+import { EquipmentType } from "../types/characterOptions/equipment.types";
+import { Feature } from "../types/characterOptions/features.types";
+import { Trait } from "../types/characterOptions/traits.types";
 
 export default function CharBuilder () {
     const level = 1;
@@ -39,6 +44,11 @@ export default function CharBuilder () {
         "url": "/api/alignments/chaotic-evil"
         });
     const [spells, setSpells] = useState<Spell[]>([]);
+    const [proficiencies, setProficiencies] = useState<Proficiency[]>([]);
+    const [languages, setLanguages] = useState<Language[]>([]);
+    const [equipments, setEquipment] = useState<EquipmentType[]>([]);
+    const [features, setFeatures] = useState<Feature[]>([]);
+    const [traits, setTraits] = useState<Trait[]>([]);
     const [strength, setStrength] = useState<number>(0);
     const [dexterity, setDexterity] = useState<number>(0);
     const [constitution, setConstitution] = useState<number>(0);
@@ -48,29 +58,7 @@ export default function CharBuilder () {
     const [armorClass, setArmorClass] = useState<number>(0);
     const [speed, setSpeed] = useState<string>('30 feet');
     const [hitPoints, setHitPoints] = useState<number>(0);
-    // const [character, setCharacter] = useState<Character>({
-    //     characterName: name,
-    //     class: charClass,
-    //     level: level,
-    //     race: race,
-    //     alignment: alignment,
-    //     strength: strength,
-    //     dexterity: dexterity,
-    //     constitution: constitution,
-    //     intelligence: intelligence,
-    //     wisdom: wisdom,
-    //     charisma: charisma,
-    //     proficiencyBonus: proficiencyBonus,
-    //     armorClass: armorClass,
-    //     speed: speed,
-    //     hitPoints: hitPoints,
-    //     spells: spells,
-    //     // proficiencies: proficiencies,
-    //     // languages: languages,
-    //     // equipment: equipments,
-    //     // features: features,
-    //     // traits: traits,
-    // }); // *****
+    const [character, setCharacter] = useState<Character>();
     
     useEffect(() => {
         fetchRaces().then((races) => {
@@ -102,33 +90,63 @@ export default function CharBuilder () {
         console.log(JSON.stringify(chosenSpells));
     }
 
+    function appendProficiencies(chosenProfs: Proficiency[]) {
+        console.log('chosen proficiencies ' + chosenProfs); //this works it just doesn't look like it I swear
+        setProficiencies(chosenProfs);
+        console.log(JSON.stringify(chosenProfs));
+    }
+
+    function appendLanguages(chosenLangs: Language[]) {
+        console.log('chosen languages ' + chosenLangs); //this works it just doesn't look like it I swear
+        setLanguages(chosenLangs);
+        console.log(JSON.stringify(chosenLangs));
+    }
+
+    function appendEquipment(chosenEquips: EquipmentType[]) {
+        console.log('chosen equipment ' + chosenEquips); //this works it just doesn't look like it I swear
+        setEquipment(chosenEquips);
+        console.log(JSON.stringify(chosenEquips));
+    }
+
+    function appendFeatures(chosenFeats: Feature[]) {
+        console.log('chosen features ' + chosenFeats); //this works it just doesn't look like it I swear
+        setFeatures(chosenFeats);
+        console.log(JSON.stringify(chosenFeats));
+    }
+
+    function appendTraits(chosenTraits: Trait[]) {
+        console.log('chosen traits ' + chosenTraits); //this works it just doesn't look like it I swear
+        setTraits(chosenTraits);
+        console.log(JSON.stringify(chosenTraits));
+    }
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        // return setCharacter({
-        //     ...character,
-	    //     characterName: name as string,
-	    //     class: charClass as Class,
-	    //     level: level,
-	    //     race: race as Race,
-	    //     alignment: alignment as Alignment,
-	    //     strength: strength as number,
-	    //     dexterity: dexterity as number,
-	    //     constitution: constitution as number,
-	    //     intelligence: intelligence as number,
-	    //     wisdom: wisdom as number,
-	    //     charisma: charisma as number,
-	    //     proficiencyBonus: proficiencyBonus,
-	    //     armorClass: armorClass as number,
-	    //     speed: speed as string,
-        //     hitPoints: hitPoints as number,
-	    //     spells: spells as Spell[],
-	    //     // proficiencies: Proficiencies,
-	    //     // languages: Languages,
-	    //     // equipment: Equipments,
-	    //     // features: Features,
-	    //     // traits: Traits,
-        // });
-        // console.log(character);
+        return setCharacter({
+            ...character,
+	        characterName: name as string,
+	        class: charClass as Class,
+	        level: level,
+	        race: race as Race,
+	        alignment: alignment as Alignment,
+	        strength: strength as number,
+	        dexterity: dexterity as number,
+	        constitution: constitution as number,
+	        intelligence: intelligence as number,
+	        wisdom: wisdom as number,
+	        charisma: charisma as number,
+	        proficiencyBonus: proficiencyBonus,
+	        armorClass: armorClass as number,
+	        speed: speed as string,
+            hitPoints: hitPoints as number,
+	        spells: spells as Spell[],
+	        proficiencies: proficiencies,
+	        languages: languages,
+	        equipment: equipments,
+	        features: features,
+	        traits: traits,
+        });
+        console.log(character);
       }
 
       // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
@@ -287,15 +305,15 @@ export default function CharBuilder () {
 
                 <SpellListBuilder onChange={appendSpells}/>
 
-                <ProficiencyListBuilder />
+                <ProficiencyListBuilder onChange={appendProficiencies}/>
 
-                <LanguageListBuilder />
+                <LanguageListBuilder onChange={appendLanguages}/>
 
-                <EquipmentListBuilder />
+                <EquipmentListBuilder onChange={appendEquipment}/>
 
-                <FeatureListBuilder />
+                <FeatureListBuilder onChange={appendFeatures}/>
 
-                <TraitListBuilder />
+                <TraitListBuilder onChange={appendTraits}/>
 
                 <button onClick={handleSubmit}>submit</button>
             </form>
