@@ -27,7 +27,7 @@ export default function CharBuilder () {
     const [spellOps, setSpellOps] = useState<Spell[]>([]);
 
 
-    const [name, setName] = useState<string>('name'); 
+    const [name, setName] = useState<string>(''); 
     const [race, setRace] = useState<Race>({
         "index": "dragonborn",
         "name": "Dragonborn",
@@ -49,15 +49,15 @@ export default function CharBuilder () {
     const [equipments, setEquipment] = useState<EquipmentType[]>([]);
     const [features, setFeatures] = useState<Feature[]>([]);
     const [traits, setTraits] = useState<Trait[]>([]);
-    const [strength, setStrength] = useState<number>(0);
-    const [dexterity, setDexterity] = useState<number>(0);
-    const [constitution, setConstitution] = useState<number>(0);
-    const [intelligence, setIntelligence] = useState<number>(0);
-    const [wisdom, setWisdom] = useState<number>(0);
-    const [charisma, setCharisma] = useState<number>(0);
-    const [armorClass, setArmorClass] = useState<number>(0);
+    const [strength, setStrength] = useState<number>();
+    const [dexterity, setDexterity] = useState<number>();
+    const [constitution, setConstitution] = useState<number>();
+    const [intelligence, setIntelligence] = useState<number>();
+    const [wisdom, setWisdom] = useState<number>();
+    const [charisma, setCharisma] = useState<number>();
+    const [armorClass, setArmorClass] = useState<number>();
     const [speed, setSpeed] = useState<string>('30 feet');
-    const [hitPoints, setHitPoints] = useState<number>(0);
+    const [hitPoints, setHitPoints] = useState<number>();
     const [character, setCharacter] = useState<Character>();
     
     useEffect(() => {
@@ -85,44 +85,44 @@ export default function CharBuilder () {
       }, []);
 
     function appendSpells(chosenSpells: Spell[]) {
-        console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
+        // console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
         setSpells(chosenSpells);
-        console.log(JSON.stringify(chosenSpells));
+        // console.log(JSON.stringify(chosenSpells));
     }
 
     function appendProficiencies(chosenProfs: Proficiency[]) {
-        console.log('chosen proficiencies ' + chosenProfs); //this works it just doesn't look like it I swear
+        // console.log('chosen proficiencies ' + chosenProfs); //this works it just doesn't look like it I swear
         setProficiencies(chosenProfs);
-        console.log(JSON.stringify(chosenProfs));
+        // console.log(JSON.stringify(chosenProfs));
     }
 
     function appendLanguages(chosenLangs: Language[]) {
-        console.log('chosen languages ' + chosenLangs); //this works it just doesn't look like it I swear
+        // console.log('chosen languages ' + chosenLangs); //this works it just doesn't look like it I swear
         setLanguages(chosenLangs);
-        console.log(JSON.stringify(chosenLangs));
+        // console.log(JSON.stringify(chosenLangs));
     }
 
     function appendEquipment(chosenEquips: EquipmentType[]) {
-        console.log('chosen equipment ' + chosenEquips); //this works it just doesn't look like it I swear
+        // console.log('chosen equipment ' + chosenEquips); //this works it just doesn't look like it I swear
         setEquipment(chosenEquips);
-        console.log(JSON.stringify(chosenEquips));
+        // console.log(JSON.stringify(chosenEquips));
     }
 
     function appendFeatures(chosenFeats: Feature[]) {
-        console.log('chosen features ' + chosenFeats); //this works it just doesn't look like it I swear
+        // console.log('chosen features ' + chosenFeats); //this works it just doesn't look like it I swear
         setFeatures(chosenFeats);
-        console.log(JSON.stringify(chosenFeats));
+        // console.log(JSON.stringify(chosenFeats));
     }
 
     function appendTraits(chosenTraits: Trait[]) {
-        console.log('chosen traits ' + chosenTraits); //this works it just doesn't look like it I swear
+        // console.log('chosen traits ' + chosenTraits); //this works it just doesn't look like it I swear
         setTraits(chosenTraits);
-        console.log(JSON.stringify(chosenTraits));
+        // console.log(JSON.stringify(chosenTraits));
     }
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        return setCharacter({
+        setCharacter({
             ...character,
 	        characterName: name as string,
 	        class: charClass as Class,
@@ -168,9 +168,9 @@ export default function CharBuilder () {
                 </label>
 
                 <select
-                    // onChange={(e: any) => setRace(
-                    //     races.find((race) => race.name === e.target.value)
-                    //     )}
+                    onChange={(e: any) => setRace(
+                        races.find((race) => race.name === e.target.value) as Race
+                        )}
                     aria-label="Select Character Race"
                     name="race"
                 >
@@ -186,9 +186,9 @@ export default function CharBuilder () {
                 </select>
 
                 <select
-                    // onChange={(e: any) => setCharClass(classes.find(
-                    //     (singleClass) => singleClass.name === e.target.value)
-                    // )}
+                    onChange={(e: any) => setCharClass(classes.find(
+                        (singleClass) => singleClass.name === e.target.value) as Class
+                    )}
                     aria-label="Select Character Class"
                     name="class"
                 >
@@ -207,9 +207,9 @@ export default function CharBuilder () {
                 </select>
 
                 <select
-                    // onChange={(e: any) => setAlignment(
-                    //     alignments.find((alignment) => alignment.name === e.target.value)
-                    //     )}
+                    onChange={(e: any) => setAlignment(
+                        alignments.find((alignment) => alignment.name === e.target.value) as Alignment
+                        )}
                     aria-label="Select Character Alignment"
                     name="alignment"
                 >
