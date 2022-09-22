@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Race } from "../types/characterOptions/race.types";
 import { Class } from "../types/characterOptions/classes.types";
 import { Alignment } from "../types/characterOptions/alignments.types"
@@ -9,35 +9,120 @@ import EquipmentListBuilder from "../components/EquipmentListBuilder";
 import FeatureListBuilder from "../components/FeatureListBuilder";
 import TraitListBuilder from "../components/TraitListBuilder";
 import { Character } from "../types/character.types";
+import { fetchAlignments, fetchClasses, fetchRaces } from "../services/builder.service";
+import { Spell } from "../types/characterOptions/spells.types";
 
 export default function CharBuilder () {
     const level = 1;
     const proficiencyBonus = 2;
-    const [name, setName] = useState<string>(); 
-    const [race, setRace] = useState<Race>(); // these are set to endpoints
-    const [charClass, setCharClass] = useState<Class>(); // these are set to endpoints
-    const [alignment, setAlignment] = useState<Alignment>(); // these are set to endpoints
-    const [strength, setStrength] = useState<number>();
-    const [dexterity, setDexterity] = useState<number>();
-    const [constitution, setConstitution] = useState<number>();
-    const [intelligence, setIntelligence] = useState<number>();
-    const [wisdom, setWisdom] = useState<number>();
-    const [charisma, setCharisma] = useState<number>();
-    const [armorClass, setArmorClass] = useState<number>();
-    const [speed, setSpeed] = useState<number>();
-    const [hitPoints, setHitPoints] = useState<number>();
-    const [character, setCharacter] = useState<Character>();
+
+    const [races, setRaces] = useState<Race[]>([]);
+    const [classes, setClasses] = useState<Class[]>([]);
+    const [alignments, setAlignments] = useState<Alignment[]>([]);
+
+    const [name, setName] = useState<string>('name'); 
+    const [race, setRace] = useState<Race>({
+        "index": "dragonborn",
+        "name": "Dragonborn",
+        "url": "/api/races/dragonborn"
+        });
+    const [charClass, setCharClass] = useState<Class>({
+        "index": "barbarian",
+        "name": "Barbarian",
+        "url": "/api/classes/barbarian"
+        });
+    const [alignment, setAlignment] = useState<Alignment>({
+        "index": "chaotic-evil",
+        "name": "Chaotic Evil",
+        "url": "/api/alignments/chaotic-evil"
+        });
+    const [spells, setSpells] = useState<Spell[]>([{
+        "index": "acid-arrow",
+        "name": "Acid Arrow",
+        "url": "/api/spells/acid-arrow"
+        }]);
+    const [strength, setStrength] = useState<number>(0);
+    const [dexterity, setDexterity] = useState<number>(0);
+    const [constitution, setConstitution] = useState<number>(0);
+    const [intelligence, setIntelligence] = useState<number>(0);
+    const [wisdom, setWisdom] = useState<number>(0);
+    const [charisma, setCharisma] = useState<number>(0);
+    const [armorClass, setArmorClass] = useState<number>(0);
+    const [speed, setSpeed] = useState<string>('30 feet');
+    const [hitPoints, setHitPoints] = useState<number>(0);
+    // const [character, setCharacter] = useState<Character>({
+    //     characterName: name,
+    //     class: charClass,
+    //     level: level,
+    //     race: race,
+    //     alignment: alignment,
+    //     strength: strength,
+    //     dexterity: dexterity,
+    //     constitution: constitution,
+    //     intelligence: intelligence,
+    //     wisdom: wisdom,
+    //     charisma: charisma,
+    //     proficiencyBonus: proficiencyBonus,
+    //     armorClass: armorClass,
+    //     speed: speed,
+    //     hitPoints: hitPoints,
+    //     spells: spells,
+    //     // proficiencies: proficiencies,
+    //     // languages: languages,
+    //     // equipment: equipments,
+    //     // features: features,
+    //     // traits: traits,
+    // }); // *****
     
+    useEffect(() => {
+        fetchRaces().then((races) => {
+          setRaces(races);
+        });
+      }, []);
+
+      useEffect(() => {
+        fetchClasses().then((classes) => {
+          setClasses(classes);
+        });
+      }, []);
+
+      useEffect(() => {
+        fetchAlignments().then((alignments) => {
+          setAlignments(alignments);
+        });
+      }, []);
+
+    function appendSpells(next: Spell[]) {
+        setSpells((prevSpells) => prevSpells)
+    }
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         // return setCharacter({
         //     ...character,
-        //     characterName: name,
-        //     race: race,
-        //     class: charClass,
-
+	    //     characterName: name as string,
+	    //     class: charClass as Class,
+	    //     level: level,
+	    //     race: race as Race,
+	    //     alignment: alignment as Alignment,
+	    //     strength: strength as number,
+	    //     dexterity: dexterity as number,
+	    //     constitution: constitution as number,
+	    //     intelligence: intelligence as number,
+	    //     wisdom: wisdom as number,
+	    //     charisma: charisma as number,
+	    //     proficiencyBonus: proficiencyBonus,
+	    //     armorClass: armorClass as number,
+	    //     speed: speed as string,
+        //     hitPoints: hitPoints as number,
+	    //     spells: spells as Spell[],
+	    //     // proficiencies: Proficiencies,
+	    //     // languages: Languages,
+	    //     // equipment: Equipments,
+	    //     // features: Features,
+	    //     // traits: Traits,
         // });
+        // console.log(character);
       }
 
       // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
@@ -59,54 +144,60 @@ export default function CharBuilder () {
                 </label>
 
                 <select
-                    onChange={(e: any) => setRace(e.target.value)}
+                    // onChange={(e: any) => setRace(
+                    //     races.find((race) => race.name === e.target.value)
+                    //     )}
                     aria-label="Select Character Race"
                     name="race"
                 >
-                    <option value="/api/races/dragonborn">Dragonborn</option>
-                    <option value="/api/races/dwarf">Dwarf</option>
-                    <option value="/api/races/elf">Elf</option>
-                    <option value="/api/races/gnome">Gnome</option>
-                    <option value="/api/races/half-elf">Half-Elf</option>
-                    <option value="/api/races/half-orc">Half-Orc</option>
-                    <option value="/api/races/halfling">Halfling</option>
-                    <option value="/api/races/human">Human</option>
-                    <option value="/api/races/tiefling">Tiefling</option>
+                    <option value="dragonborn">Dragonborn</option>
+                    <option value="dwarf">Dwarf</option>
+                    <option value="elf">Elf</option>
+                    <option value="gnome">Gnome</option>
+                    <option value="half-elf">Half-Elf</option>
+                    <option value="half-orc">Half-Orc</option>
+                    <option value="halfling">Halfling</option>
+                    <option value="human">Human</option>
+                    <option value="tiefling">Tiefling</option>
                 </select>
 
                 <select
-                    onChange={(e: any) => setCharClass(e.target.value)}
+                    // onChange={(e: any) => setCharClass(classes.find(
+                    //     (singleClass) => singleClass.name === e.target.value)
+                    // )}
                     aria-label="Select Character Class"
                     name="class"
                 >
-                    <option value="/api/classes/barbarian">Barbarian</option>
-                    <option value="/api/classes/bard">Bard</option>
-                    <option value="/api/classes/cleric">Cleric</option>
-                    <option value="/api/classes/druid">Druid</option>
-                    <option value="/api/classes/fighter">Fighter</option>
-                    <option value="/api/classes/monk">Monk</option>
-                    <option value="/api/classes/paladin">Paladin</option>
-                    <option value="/api/classes/ranger">Ranger</option>
-                    <option value="/api/classes/rouge">Rouge</option>
-                    <option value="/api/classes/sorcerer">Sorcerer</option>
-                    <option value="/api/classes/warlock">Warlock</option>
-                    <option value="/api/classes/wizard">Wizard</option>
+                    <option value="barbarian">Barbarian</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rouge">Rouge</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
                 </select>
 
                 <select
-                    onChange={(e: any) => setAlignment(e.target.value)}
+                    // onChange={(e: any) => setAlignment(
+                    //     alignments.find((alignment) => alignment.name === e.target.value)
+                    //     )}
                     aria-label="Select Character Alignment"
                     name="alignment"
                 >
-                    <option value="/api/alignments/chaotic-evil">Chaotic-Evil</option>
-                    <option value="/api/alignments/chaotic-good">Chaotic-Good</option>
-                    <option value="/api/alignments/chaotic-neutral">Chaotic-Neutral</option>
-                    <option value="/api/alignments/lawful-evil">Lawful-Evil</option>
-                    <option value="/api/alignments/lawful-good">Lawful-Good</option>
-                    <option value="/api/alignments/lawful-neutral">Lawful-Neutral</option>
-                    <option value="/api/alignments/neutral">Neutral</option>
-                    <option value="/api/alignments/neutral-evil">Neutral-Evil</option>
-                    <option value="/api/alignments/neutral-good">Neutral-Good</option>
+                    <option value="chaotic-evil">Chaotic-Evil</option>
+                    <option value="chaotic-good">Chaotic-Good</option>
+                    <option value="chaotic-neutral">Chaotic-Neutral</option>
+                    <option value="lawful-evil">Lawful-Evil</option>
+                    <option value="lawful-good">Lawful-Good</option>
+                    <option value="lawful-neutral">Lawful-Neutral</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="neutral-evil">Neutral-Evil</option>
+                    <option value="neutral-good">Neutral-Good</option>
                 </select>
 
                 <label htmlFor="stats">
@@ -169,11 +260,11 @@ export default function CharBuilder () {
                 <label htmlFor="speed">
                     Enter in yer speed: 
                         <input
-                            type="number"
+                            type="string"
                             name="speed"
                             value={speed}
                             placeholder="Speed"
-                            onChange={(e) => setSpeed(Number(e.target.value))}
+                            onChange={(e) => setSpeed(e.target.value)}
                         />
                 </label>
 
@@ -188,7 +279,7 @@ export default function CharBuilder () {
                         />
                 </label>
 
-                <SpellListBuilder />
+                {/* <SpellListBuilder onChange={appendSpells}/> */}
 
                 <ProficiencyListBuilder />
 
@@ -200,6 +291,7 @@ export default function CharBuilder () {
 
                 <TraitListBuilder />
 
+                <button onClick={handleSubmit}>submit</button>
             </form>
 
         </div>
