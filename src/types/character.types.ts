@@ -5,16 +5,16 @@ import { Features } from "./characterOptions/features.types";
 import { Languages } from "./characterOptions/languages.types";
 import { Proficiencies } from "./characterOptions/proficiencies.types";
 import { Race } from "./characterOptions/race.types";
-import { Spells } from "./characterOptions/spells.types";
+import { Spell } from "./characterOptions/spells.types";
 import { Traits } from "./characterOptions/traits.types";
 
 
 export interface Character {
-	_id: string;
-	userId: string;
+	_id?: string;
+	userId?: string;
 	characterName: string;
-	createdAt: string;
-	updatedAt: string;
+	createdAt?: string;
+	updatedAt?: string;
 	class: Class;
 	level: number;
 	race: Race;
@@ -27,9 +27,9 @@ export interface Character {
 	charisma: number;
 	proficiencyBonus: number;
 	armorClass: number;
-	speed: number;
+	speed: string;
 	hitPoints: number;
-	spells: Spells;
+	spells: Spell[];
 	proficiencies: Proficiencies;
 	languages: Languages;
 	equipment: Equipments;

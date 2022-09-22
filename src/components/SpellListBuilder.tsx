@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { fetchSpells } from "../services/builder.service";
 import { Spell } from "../types/characterOptions/spells.types";
 
-export default function SpellListBuilder () {
+interface Props {
+    onChange: () => Spell[];
+}
+
+export default function SpellListBuilder ({onChange}: Props) {
     const [spellOps, setSpellOps] = useState<Spell[]>([]);
     const [charSpells, setCharSpells] = useState<Spell[]>([]);
     const [progress, setProgress] = useState(0);

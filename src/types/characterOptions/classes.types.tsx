@@ -11,7 +11,7 @@ export type Class = {
     class_levels?: string; // this is an endpoint
     multi_classing?: {}; // *** need to specify
     sublasses?: []; // *** need to specify
-    spellcasting: {}; // *** need to specify
+    spellcasting?: {}; // *** need to specify
     spells?: string; // another endpoint
 }
 

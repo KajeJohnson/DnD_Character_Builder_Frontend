@@ -1,5 +1,5 @@
 export type Spell = {
-    _id: string;
+    _id?: string;
     index: string;
     name: string;
     url: string; 
