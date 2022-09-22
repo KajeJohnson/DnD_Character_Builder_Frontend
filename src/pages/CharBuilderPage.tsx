@@ -148,8 +148,6 @@ export default function CharBuilder () {
         });
         console.log(character);
       }
-
-      // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
     
     return (
         <div>
