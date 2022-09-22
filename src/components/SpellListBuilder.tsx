@@ -3,15 +3,13 @@ import { fetchSpells } from "../services/builder.service";
 import { Spell } from "../types/characterOptions/spells.types";
 
 interface Props {
-    onChange: () => Spell[];
+    onChange: (spells: Spell[]) => void;
 }
 
-export default function SpellListBuilder ({onChange}: Props) {
+export default function SpellListBuilder ({ onChange }: Props) {
     const [spellOps, setSpellOps] = useState<Spell[]>([]);
     const [charSpells, setCharSpells] = useState<Spell[]>([]);
     const [progress, setProgress] = useState(0);
-
-    // how to set the charSpells to be added to a player's character data?
 
     useEffect(() => {
         fetchSpells().then((spells) => {
@@ -23,7 +21,8 @@ export default function SpellListBuilder ({onChange}: Props) {
         const spellAlreadyChosen = charSpells.find((spell) => spell.name === selectedSpell.name);
         if (!spellAlreadyChosen) {
         setCharSpells([selectedSpell, ...charSpells]);
-        }
+        };
+        console.log(charSpells);
     }
 
     function removeSpell(name: string) {
@@ -31,6 +30,7 @@ export default function SpellListBuilder ({onChange}: Props) {
         let newArray = charSpells.slice(0)
         newArray.splice(index, 1)
         setCharSpells(newArray);
+        console.log(charSpells);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -60,6 +60,7 @@ export default function SpellListBuilder ({onChange}: Props) {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charSpells as Spell[])}}>add selected spells to character</button>
         </div>
       );
 }

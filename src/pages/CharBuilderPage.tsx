@@ -9,7 +9,7 @@ import EquipmentListBuilder from "../components/EquipmentListBuilder";
 import FeatureListBuilder from "../components/FeatureListBuilder";
 import TraitListBuilder from "../components/TraitListBuilder";
 import { Character } from "../types/character.types";
-import { fetchAlignments, fetchClasses, fetchRaces } from "../services/builder.service";
+import { fetchAlignments, fetchClasses, fetchRaces, fetchSpells } from "../services/builder.service";
 import { Spell } from "../types/characterOptions/spells.types";
 
 export default function CharBuilder () {
@@ -19,6 +19,8 @@ export default function CharBuilder () {
     const [races, setRaces] = useState<Race[]>([]);
     const [classes, setClasses] = useState<Class[]>([]);
     const [alignments, setAlignments] = useState<Alignment[]>([]);
+    const [spellOps, setSpellOps] = useState<Spell[]>([]);
+
 
     const [name, setName] = useState<string>('name'); 
     const [race, setRace] = useState<Race>({
@@ -36,11 +38,7 @@ export default function CharBuilder () {
         "name": "Chaotic Evil",
         "url": "/api/alignments/chaotic-evil"
         });
-    const [spells, setSpells] = useState<Spell[]>([{
-        "index": "acid-arrow",
-        "name": "Acid Arrow",
-        "url": "/api/spells/acid-arrow"
-        }]);
+    const [spells, setSpells] = useState<Spell[]>([]);
     const [strength, setStrength] = useState<number>(0);
     const [dexterity, setDexterity] = useState<number>(0);
     const [constitution, setConstitution] = useState<number>(0);
@@ -92,8 +90,16 @@ export default function CharBuilder () {
         });
       }, []);
 
-    function appendSpells(next: Spell[]) {
-        setSpells((prevSpells) => prevSpells)
+      useEffect(() => {
+        fetchSpells().then((spells) => {
+          setSpellOps(spells);
+        });
+      }, []);
+
+    function appendSpells(chosenSpells: Spell[]) {
+        console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
+        setSpells(chosenSpells);
+        console.log(JSON.stringify(chosenSpells));
     }
 
     function handleSubmit(e: React.FormEvent) {
@@ -279,7 +285,7 @@ export default function CharBuilder () {
                         />
                 </label>
 
-                {/* <SpellListBuilder onChange={appendSpells}/> */}
+                <SpellListBuilder onChange={appendSpells}/>
 
                 <ProficiencyListBuilder />
 
