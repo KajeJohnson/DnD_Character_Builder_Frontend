@@ -17,7 +17,7 @@ export function useAuth() {
 					navigate("/homepage");
 				} else {
 					if (!firebaseUser) {
-						navigate("/login");
+						navigate("/");
 						//changed to login from homepage -kj
 					}
 				}

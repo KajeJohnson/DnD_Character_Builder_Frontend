@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CharacterList from "../components/CharacterList";
 import { AuthContext } from "../context/auth.context";
+import { logout } from "../services/auth.service";
 import { getUserCharacters } from "../services/character.service";
 import { Character } from "../types/character.types";
 
@@ -29,14 +30,18 @@ export default function HomePage() {
 
 	console.log("user", user);
 
+	const handleLogout = async () => {
+		logout();
+	};
+
 	return (
 		<div>
 			<button>New character</button>
 			{characters && <CharacterList characters={characters} />}
 			{/* below div is for testing - delete later -kj */}
 			<div>
-				<Link to={"/signup"}>
-					<button>Sign up</button>
+				<Link to={"/"}>
+					<button onClick={handleLogout}>Logout</button>
 				</Link>
 			</div>
 		</div>
