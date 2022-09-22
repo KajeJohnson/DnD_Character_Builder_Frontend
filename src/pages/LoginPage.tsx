@@ -1,7 +1,7 @@
 import {
-  authenticateWithGoogle,
-  loginWithGoogle,
-  signUpWithGoogle,
+	authenticateWithGoogle,
+	loginWithGoogle,
+	signUpWithGoogle,
 } from "../services/auth.service";
 import gobbyboiii from "../img/gobbyboiii.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,64 +11,46 @@ import { getUser } from "../services/user.service";
 import { sign } from "crypto";
 
 export default function LoginPage() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    let user = await signUpWithGoogle();
-    console.log(user.uid);
-    const userId = await getUser(user.uid);
-    console.log(userId);
-    // // if (userId) {
-    // // 	user = await loginWithGoogle();
-    // // }
+	const handleLogin = async () => {
+		const user = await authenticateWithGoogle();
 
-    navigate("/homepage");
+		console.log(user.uid);
 
-    // console.log(userId);
-    // console.log(user.uid);
+		// const newUser = await signUpWithGoogle();
 
-    // if (user) {
-    // 	navigate("/homepage");
-    // }
+		navigate("/homepage");
+	};
 
-    // if (!getUser(user.uid)) {
-    // 	navigate("/signup");
-    // } else {
-    // 	navigate("/homepage");
-    // }
-  };
-
-  return (
-    <div>
-      <div
-        style={{
-          backgroundImage: `url(${gobbyboiii})`,
-          backgroundRepeat: "no-repeat",
-          height: "100vh",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          margin: "0",
-        }}
-      >
-        <div style={{ color: "white" }}>
-          <h1 style={{ paddingTop: "50px", margin: "0", fontSize: "40px" }}>
-            Dice & Details
-          </h1>
-          <h2>Greetings, Traveler! </h2>
-          <h3>Come spend some time with familiar faces </h3>
-          <h3>Or dare to make a new acquaintance </h3>
-          {/* <Link to={"/homepage"}> */}
-          <button onClick={handleLogin}>Log in with google</button>
-          {/* </Link> */}
-          <h4>This character builder is made for D&D5e</h4>
-          {/* <Link to={"/signup"}>
+	return (
+		<div>
+			<div
+				style={{
+					backgroundImage: `url(${gobbyboiii})`,
+					backgroundRepeat: "no-repeat",
+					height: "100vh",
+					backgroundPosition: "center",
+					backgroundSize: "cover",
+					margin: "0",
+				}}
+			>
+				<div style={{ color: "white" }}>
+					<h1 style={{ paddingTop: "50px", margin: "0", fontSize: "40px" }}>
+						Dice & Details
+					</h1>
+					<h2>Greetings, Traveler! </h2>
+					<h3>Come spend some time with familiar faces </h3>
+					<h3>Or dare to make a new acquaintance </h3>
+					{/* <Link to={"/homepage"}> */}
+					<button onClick={handleLogin}>Log in with google</button>
+					{/* </Link> */}
+					<h4>This character builder is made for D&D5e</h4>
+					{/* <Link to={"/signup"}>
 						<button>Sign up</button>
 					</Link> */}
-        </div>
-      </div>
-    </div>
-  );
-}
-function signupWithGoogle() {
-  throw new Error("Function not implemented.");
+				</div>
+			</div>
+		</div>
+	);
 }
