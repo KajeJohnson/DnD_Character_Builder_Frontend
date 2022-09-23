@@ -58,27 +58,27 @@ export default function LoginPage() {
 					{/* <Link to={"/homepage"}> */}
 					<button
 						onClick={handleLogin}
-						className="bg-orange-600 hidden md:inline-block"
+						className="bg-yellow-800 rounded hidden md:inline-block"
 					>
-						Log in
+						Hello friend
 					</button>
 					<button
 						onClick={handleSignup}
-						className="bg-orange-600 hidden md:inline-block"
+						className="bg-yellow-800 rounded hidden md:inline-block"
 					>
-						Sign up
+						Welcome stranger
 					</button>
 					<button
 						onClick={handleMobileLogin}
-						className="bg-purple-600 sm:inline-block md:hidden"
+						className="bg-yellow-800 rounded sm:inline-block md:hidden"
 					>
-						Log in
+						Hello friend
 					</button>
 					<button
 						onClick={handleMobileSignup}
-						className="bg-purple-600 sm:inline-block md:hidden"
+						className="bg-yellow-800 rounded sm:inline-block md:hidden"
 					>
-						Sign up
+						Welcome stranger
 					</button>
 					{/* </Link> */}
 					<h4>This character builder is made for D&D5e</h4>
