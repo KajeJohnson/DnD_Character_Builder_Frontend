@@ -9,17 +9,18 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { getUser } from "../services/user.service";
 import { sign } from "crypto";
+import SignupPage from "./SignupPage";
 
 export default function LoginPage() {
 	const navigate = useNavigate();
 
 	const handleLogin = async () => {
-		const user = await authenticateWithGoogle();
+		const user = await loginWithGoogle();
+		navigate("/homepage");
+	};
 
-		console.log(user.uid);
-
-		// const newUser = await signUpWithGoogle();
-
+	const handleSignup = async () => {
+		const user = await signUpWithGoogle();
 		navigate("/homepage");
 	};
 
@@ -43,7 +44,8 @@ export default function LoginPage() {
 					<h3>Come spend some time with familiar faces </h3>
 					<h3>Or dare to make a new acquaintance </h3>
 					{/* <Link to={"/homepage"}> */}
-					<button onClick={handleLogin}>Log in with google</button>
+					<button onClick={handleLogin}>Log in</button>
+					<button onClick={handleSignup}>Sign up</button>
 					{/* </Link> */}
 					<h4>This character builder is made for D&D5e</h4>
 					{/* <Link to={"/signup"}>
