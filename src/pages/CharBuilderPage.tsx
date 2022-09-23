@@ -21,6 +21,7 @@ import { Language } from "../types/characterOptions/languages.types";
 import { EquipmentType } from "../types/characterOptions/equipment.types";
 import { Feature } from "../types/characterOptions/features.types";
 import { Trait } from "../types/characterOptions/traits.types";
+import { addCharacter } from "../services/character.service";
 
 export default function CharBuilder() {
   const level = 1;
@@ -89,9 +90,9 @@ export default function CharBuilder() {
   }, []);
 
   function appendSpells(chosenSpells: Spell[]) {
-    // console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
+    console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
     setSpells(chosenSpells);
-    // console.log(JSON.stringify(chosenSpells));
+    console.log(JSON.stringify(chosenSpells));
   }
 
   function appendProficiencies(chosenProfs: Proficiency[]) {
@@ -127,7 +128,7 @@ export default function CharBuilder() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setCharacter({
-      ...character,
+      // ...character,
       characterName: name as string,
       class: charClass as Class,
       level: level,
@@ -150,7 +151,8 @@ export default function CharBuilder() {
       features: features,
       traits: traits,
     });
-    console.log(character);
+    // console.log('from onSubmit ' + JSON.stringify(character));
+    addCharacter(character as Character);
   }
 
   // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
@@ -333,7 +335,7 @@ export default function CharBuilder() {
 
           <TraitListBuilder onChange={appendTraits} />
 
-          <button onClick={handleSubmit}>submit</button>
+          <button onClick={handleSubmit} type="submit">submit</button>
         </form>
       </div>
     </div>

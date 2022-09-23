@@ -48,17 +48,17 @@ export default function LanguageListBuilder ({ onChange }: Props) {
 
                     {language.name}
 
-                    <button onClick={() => addLang(language)}>
+                    <button onClick={() => addLang(language)} type='button'>
                         add language
                     </button>
 
-                    <button onClick={() => removeLang(language.name)}>
+                    <button onClick={() => removeLang(language.name)} type='button'>
                         remove  language
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charLangs as Language[])}}>add selected languages to character</button>
+            <button onClick={() => {onChange(charLangs as Language[])}} type='button'>add selected languages to character</button>
         </div>
       );
 }

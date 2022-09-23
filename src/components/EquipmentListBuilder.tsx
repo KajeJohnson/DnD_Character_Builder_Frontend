@@ -51,17 +51,17 @@ export default function EquipmentListBuilder ({ onChange }: Props) {
 
                     {equipment.name}
 
-                    <button onClick={() => addEquip(equipment)}>
+                    <button onClick={() => addEquip(equipment)} type='button'>
                         add equipment
                     </button>
 
-                    <button onClick={() => removeEquip(equipment.name)}>
+                    <button onClick={() => removeEquip(equipment.name)} type='button'>
                         remove  equipment
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charEquips as EquipmentType[])}}>add selected equipment to character</button>
+            <button onClick={() => {onChange(charEquips as EquipmentType[])}} type='button'>add selected equipment to character</button>
         </div>
       );
 }

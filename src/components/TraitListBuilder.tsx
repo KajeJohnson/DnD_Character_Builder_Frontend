@@ -48,17 +48,17 @@ export default function TraitListBuilder ({ onChange }: Props) {
 
                     {trait.name}
 
-                    <button onClick={() => addTrait(trait)}>
+                    <button onClick={() => addTrait(trait)} type='button'>
                         add trait
                     </button>
 
-                    <button onClick={() => removeTrait(trait.name)}>
+                    <button onClick={() => removeTrait(trait.name)} type='button'>
                         remove  trait
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charTraits as Trait[])}}>add selected traits to character</button>
+            <button onClick={() => {onChange(charTraits as Trait[])}} type='button'>add selected traits to character</button>
         </div>
       );
 }

@@ -49,17 +49,17 @@ export default function ProficiencyListBuilder ({ onChange }: Props) {
 
                     {proficiency.name}
 
-                    <button onClick={() => addProf(proficiency)}>
+                    <button onClick={() => addProf(proficiency)} type='button'>
                         add proficiency
                     </button>
 
-                    <button onClick={() => removeProf(proficiency.name)}>
+                    <button onClick={() => removeProf(proficiency.name)} type='button'>
                         remove  proficiency
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charProfs as Proficiency[])}}>add selected proficiencies to character</button>
+            <button onClick={() => {onChange(charProfs as Proficiency[])}} type='button'>add selected proficiencies to character</button>
         </div>
       );
 }

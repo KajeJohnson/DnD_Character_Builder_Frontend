@@ -30,7 +30,6 @@ export default function SpellListBuilder ({ onChange }: Props) {
         let newArray = charSpells.slice(0)
         newArray.splice(index, 1)
         setCharSpells(newArray);
-        console.log(charSpells);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -42,7 +41,7 @@ export default function SpellListBuilder ({ onChange }: Props) {
       };
 
       return (
-        <div>
+        <form>
             <h3> Spells </h3>
             <div style={styles.container} onScroll={scrollHandler}>
           {spellOps.map((spell) => (
@@ -50,18 +49,18 @@ export default function SpellListBuilder ({ onChange }: Props) {
 
                     {spell.name}
 
-                    <button onClick={() => addSpell(spell)}>
+                    <button onClick={() => addSpell(spell)} type='button'>
                         add spell
                     </button>
 
-                    <button onClick={() => removeSpell(spell.name)}>
+                    <button onClick={() => removeSpell(spell.name)} type='button'>
                         remove spell
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charSpells as Spell[])}}>add selected spells to character</button>
-        </div>
+            <button onClick={() => {onChange(charSpells as Spell[])}} type='button'>add selected spells to character</button>
+        </form>
       );
 }
 

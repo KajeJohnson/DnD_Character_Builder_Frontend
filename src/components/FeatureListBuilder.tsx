@@ -48,17 +48,17 @@ export default function FeatureListBuilder ({ onChange }: Props) {
 
                     {feature.name}
 
-                    <button onClick={() => addFeat(feature)}>
+                    <button onClick={() => addFeat(feature)} type='button'>
                         add feature
                     </button>
 
-                    <button onClick={() => removeFeat(feature.name)}>
+                    <button onClick={() => removeFeat(feature.name)} type='button'>
                         remove  feature
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charFeats as Feature[])}}>add selected features to character</button>
+            <button onClick={() => {onChange(charFeats as Feature[])}} type='button'>add selected features to character</button>
         </div>
       );
 }
