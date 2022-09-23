@@ -56,6 +56,3 @@ export default function LoginPage() {
 		</div>
 	);
 }
-function signupWithGoogle() {
-	throw new Error("Function not implemented.");
-}
