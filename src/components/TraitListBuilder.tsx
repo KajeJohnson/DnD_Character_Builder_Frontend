@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { fetchTraits } from "../services/builder.service";
 import { Trait } from "../types/characterOptions/traits.types";
 
-export default function TraitListBuilder () {
+interface Props {
+    onChange: (traits: Trait[]) => void;
+}
+
+export default function TraitListBuilder ({ onChange }: Props) {
     const [traitOps, setTraitOps] = useState<Trait[]>([]);
     const [charTraits, setCharTraits] = useState<Trait[]>([]);
     const [progress, setProgress] = useState(0);
@@ -54,6 +58,7 @@ export default function TraitListBuilder () {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charTraits as Trait[])}}>add selected traits to character</button>
         </div>
       );
 }

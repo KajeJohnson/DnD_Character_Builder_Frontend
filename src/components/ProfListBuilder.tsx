@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { fetchProficiencies } from "../services/builder.service";
 import { Proficiency } from "../types/characterOptions/proficiencies.types";
 
-export default function ProficiencyListBuilder () {
+interface Props {
+    onChange: (proficiencies: Proficiency[]) => void;
+}
+
+export default function ProficiencyListBuilder ({ onChange }: Props) {
     const [profOps, setProfOps] = useState<Proficiency[]>([]);
     const [charProfs, setCharProfs] = useState<Proficiency[]>([]);
     const [progress, setProgress] = useState(0);
-
-    // how to set the charProfs to be added to a player's character data?
 
 
     useEffect(() => {
@@ -57,6 +59,7 @@ export default function ProficiencyListBuilder () {
             </div>
           ))}
             </div>
+            <button onClick={() => {onChange(charProfs as Proficiency[])}}>add selected proficiencies to character</button>
         </div>
       );
 }
