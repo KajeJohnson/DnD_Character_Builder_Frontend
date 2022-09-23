@@ -1,7 +1,9 @@
 import {
 	authenticateWithGoogle,
 	loginWithGoogle,
+	loginWithGoogleMobile,
 	signUpWithGoogle,
+	signUpWithGoogleMobile,
 } from "../services/auth.service";
 import gobbyboiii from "../img/gobbyboiii.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +23,16 @@ export default function LoginPage() {
 
 	const handleSignup = async () => {
 		const user = await signUpWithGoogle();
+		navigate("/homepage");
+	};
+
+	const handleMobileLogin = async () => {
+		const user = await loginWithGoogleMobile();
+		navigate("/homepage");
+	};
+
+	const handleMobileSignup = async () => {
+		const user = await signUpWithGoogleMobile();
 		navigate("/homepage");
 	};
 
@@ -44,8 +56,30 @@ export default function LoginPage() {
 					<h3>Come spend some time with familiar faces </h3>
 					<h3>Or dare to make a new acquaintance </h3>
 					{/* <Link to={"/homepage"}> */}
-					<button onClick={handleLogin}>Log in</button>
-					<button onClick={handleSignup}>Sign up</button>
+					<button
+						onClick={handleLogin}
+						className="bg-orange-600 hidden md:inline-block"
+					>
+						Log in
+					</button>
+					<button
+						onClick={handleSignup}
+						className="bg-orange-600 hidden md:inline-block"
+					>
+						Sign up
+					</button>
+					<button
+						onClick={handleMobileLogin}
+						className="bg-purple-600 sm:inline-block md:hidden"
+					>
+						Log in
+					</button>
+					<button
+						onClick={handleMobileSignup}
+						className="bg-purple-600 sm:inline-block md:hidden"
+					>
+						Sign up
+					</button>
 					{/* </Link> */}
 					<h4>This character builder is made for D&D5e</h4>
 					{/* <Link to={"/signup"}>
