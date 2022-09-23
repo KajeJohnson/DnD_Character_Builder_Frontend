@@ -22,7 +22,6 @@ import { EquipmentType } from "../types/characterOptions/equipment.types";
 import { Feature } from "../types/characterOptions/features.types";
 import { Trait } from "../types/characterOptions/traits.types";
 
-<<<<<<< HEAD
 export default function CharBuilder() {
   const level = 1;
   const proficiencyBonus = 2;
@@ -339,4 +338,4 @@ export default function CharBuilder() {
       </div>
     </div>
   );
-          }
+}
