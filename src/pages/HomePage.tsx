@@ -45,6 +45,7 @@ export default function HomePage() {
           backgroundPosition: "center",
           backgroundSize: "cover",
           margin: "0",
+          color: "#fff"
         }}
       >
         <Link to={"/createCharacter"}>

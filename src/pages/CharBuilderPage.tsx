@@ -66,7 +66,7 @@ export default function CharBuilder() {
   const [armorClass, setArmorClass] = useState<number>();
   const [speed, setSpeed] = useState<string>("30 feet");
   const [hitPoints, setHitPoints] = useState<number>();
-  const [character, setCharacter] = useState<Character>();
+  // const [character, setCharacter] = useState<Character>();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -96,37 +96,37 @@ export default function CharBuilder() {
   }, []);
 
   function appendSpells(chosenSpells: Spell[]) {
-    console.log("chosen spells " + chosenSpells); //this works it just doesn't look like it I swear
+    // console.log("chosen spells " + chosenSpells); 
     setSpells(chosenSpells);
-    console.log(JSON.stringify(chosenSpells));
+    // console.log(JSON.stringify(chosenSpells));
   }
 
   function appendProficiencies(chosenProfs: Proficiency[]) {
-    // console.log('chosen proficiencies ' + chosenProfs); //this works it just doesn't look like it I swear
+    // console.log('chosen proficiencies ' + chosenProfs); 
     setProficiencies(chosenProfs);
     // console.log(JSON.stringify(chosenProfs));
   }
 
   function appendLanguages(chosenLangs: Language[]) {
-    // console.log('chosen languages ' + chosenLangs); //this works it just doesn't look like it I swear
+    // console.log('chosen languages ' + chosenLangs); 
     setLanguages(chosenLangs);
     // console.log(JSON.stringify(chosenLangs));
   }
 
   function appendEquipment(chosenEquips: EquipmentType[]) {
-    // console.log('chosen equipment ' + chosenEquips); //this works it just doesn't look like it I swear
+    // console.log('chosen equipment ' + chosenEquips);
     setEquipment(chosenEquips);
     // console.log(JSON.stringify(chosenEquips));
   }
 
   function appendFeatures(chosenFeats: Feature[]) {
-    // console.log('chosen features ' + chosenFeats); //this works it just doesn't look like it I swear
+    // console.log('chosen features ' + chosenFeats);
     setFeatures(chosenFeats);
     // console.log(JSON.stringify(chosenFeats));
   }
 
   function appendTraits(chosenTraits: Trait[]) {
-    // console.log('chosen traits ' + chosenTraits); //this works it just doesn't look like it I swear
+    // console.log('chosen traits ' + chosenTraits);
     setTraits(chosenTraits);
     // console.log(JSON.stringify(chosenTraits));
   }
@@ -159,13 +159,12 @@ export default function CharBuilder() {
     // });
     // console.log('from onSubmit ' + JSON.stringify(character));
     addCharacter({
-      // ...character,
       userId: user?._id,
       characterName: name as string,
-      // class: charClass as Class,
+      class: charClass as Class,
       level: level,
-      // race: race as Race,
-      // alignment: alignment as Alignment,
+      race: race as Race,
+      alignment: alignment as Alignment,
       strength: strength as number,
       dexterity: dexterity as number,
       constitution: constitution as number,
@@ -176,18 +175,16 @@ export default function CharBuilder() {
       armorClass: armorClass as number,
       speed: speed as string,
       hitPoints: hitPoints as number,
-      // spells: spells as Spell[],
+      spells: spells as Spell[],
       proficiencies: proficiencies,
       languages: languages,
       equipment: equipments,
       features: features,
       traits: traits,
     });
-
     navigate("/homepage");
   }
   //get list characters at endpoint and display them
-  // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
 
   return (
     <div>
