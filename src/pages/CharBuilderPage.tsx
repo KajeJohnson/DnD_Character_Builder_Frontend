@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Race } from "../types/characterOptions/race.types";
 import { Class } from "../types/characterOptions/classes.types";
 import { Alignment } from "../types/characterOptions/alignments.types";
@@ -22,6 +22,9 @@ import { EquipmentType } from "../types/characterOptions/equipment.types";
 import { Feature } from "../types/characterOptions/features.types";
 import { Trait } from "../types/characterOptions/traits.types";
 import { addCharacter } from "../services/character.service";
+import { useNavigate } from "react-router-dom";
+import { stringify } from "querystring";
+import { AuthContext } from "../context/auth.context";
 
 export default function CharBuilder() {
   const level = 1;
@@ -65,6 +68,9 @@ export default function CharBuilder() {
   const [hitPoints, setHitPoints] = useState<number>();
   const [character, setCharacter] = useState<Character>();
 
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     fetchRaces().then((races) => {
       setRaces(races);
@@ -90,7 +96,7 @@ export default function CharBuilder() {
   }, []);
 
   function appendSpells(chosenSpells: Spell[]) {
-    console.log('chosen spells ' + chosenSpells); //this works it just doesn't look like it I swear
+    console.log("chosen spells " + chosenSpells); //this works it just doesn't look like it I swear
     setSpells(chosenSpells);
     console.log(JSON.stringify(chosenSpells));
   }
@@ -127,13 +133,39 @@ export default function CharBuilder() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setCharacter({
+    // setCharacter({
+    //   // ...character,
+    //   characterName: name as string,
+    //   class: charClass as Class,
+    //   level: level,
+    //   race: race as Race,
+    //   alignment: alignment as Alignment,
+    //   strength: strength as number,
+    //   dexterity: dexterity as number,
+    //   constitution: constitution as number,
+    //   intelligence: intelligence as number,
+    //   wisdom: wisdom as number,
+    //   charisma: charisma as number,
+    //   proficiencyBonus: proficiencyBonus,
+    //   armorClass: armorClass as number,
+    //   speed: speed as string,
+    //   hitPoints: hitPoints as number,
+    //   spells: spells as Spell[],
+    //   proficiencies: proficiencies,
+    //   languages: languages,
+    //   equipment: equipments,
+    //   features: features,
+    //   traits: traits,
+    // });
+    // console.log('from onSubmit ' + JSON.stringify(character));
+    addCharacter({
       // ...character,
+      userId: user?._id,
       characterName: name as string,
-      class: charClass as Class,
+      // class: charClass as Class,
       level: level,
-      race: race as Race,
-      alignment: alignment as Alignment,
+      // race: race as Race,
+      // alignment: alignment as Alignment,
       strength: strength as number,
       dexterity: dexterity as number,
       constitution: constitution as number,
@@ -144,17 +176,17 @@ export default function CharBuilder() {
       armorClass: armorClass as number,
       speed: speed as string,
       hitPoints: hitPoints as number,
-      spells: spells as Spell[],
+      // spells: spells as Spell[],
       proficiencies: proficiencies,
       languages: languages,
       equipment: equipments,
       features: features,
       traits: traits,
     });
-    // console.log('from onSubmit ' + JSON.stringify(character));
-    addCharacter(character as Character);
-  }
 
+    navigate("/homepage");
+  }
+  //get list characters at endpoint and display them
   // do we want to have a copy of the stat page display at the bottom of the charater builder page that fills with info from the API as a user inputs choices?
 
   return (
@@ -335,7 +367,9 @@ export default function CharBuilder() {
 
           <TraitListBuilder onChange={appendTraits} />
 
-          <button onClick={handleSubmit} type="submit">submit</button>
+          <button onClick={handleSubmit} type="submit">
+            submit
+          </button>
         </form>
       </div>
     </div>

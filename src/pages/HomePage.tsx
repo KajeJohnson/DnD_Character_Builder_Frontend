@@ -14,15 +14,15 @@ export default function HomePage() {
   // const [opened, handlers] = useDisclosure(false);
   //do we need character in place of user here?
 
-  const characters = [
-    { _id: "test", uid: "test", email: "test", displayName: "test" },
-  ];
+  // const characters = [
+  //   { _id: "test", uid: "test", email: "test", displayName: "test" },
+  // ];
 
   //added async
-  //   const characters = useQuery(
-  //     [{ _id: "test", uid: "test", email: "test", displayName: "test" }],
-  //     async () => await getUserCharacters(user?._id as string)
-  //   );
+  const characters = useQuery(
+    [{}],
+    async () => await getUserCharacters(user?._id as string)
+  );
 
   // const { data: characters } = useQuery(
   // 	["characters", user?._id],
@@ -49,8 +49,10 @@ export default function HomePage() {
       >
         <Link to={"/createCharacter"}>
           <button>New character</button>
-          {characters && <CharacterList characters={characters} />}
+          {/* {characters && <CharacterList characters={characters} />} */}
+          {characters.data && <CharacterList characters={characters.data} />}
         </Link>
+
         {/* below div is for testing - delete later -kj */}
         <div>
           <Link to={"/"}>
