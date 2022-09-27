@@ -66,7 +66,6 @@ export default function CharBuilder() {
   const [armorClass, setArmorClass] = useState<number>();
   const [speed, setSpeed] = useState<string>("30 feet");
   const [hitPoints, setHitPoints] = useState<number>();
-  // const [character, setCharacter] = useState<Character>();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -133,31 +132,6 @@ export default function CharBuilder() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // setCharacter({
-    //   // ...character,
-    //   characterName: name as string,
-    //   class: charClass as Class,
-    //   level: level,
-    //   race: race as Race,
-    //   alignment: alignment as Alignment,
-    //   strength: strength as number,
-    //   dexterity: dexterity as number,
-    //   constitution: constitution as number,
-    //   intelligence: intelligence as number,
-    //   wisdom: wisdom as number,
-    //   charisma: charisma as number,
-    //   proficiencyBonus: proficiencyBonus,
-    //   armorClass: armorClass as number,
-    //   speed: speed as string,
-    //   hitPoints: hitPoints as number,
-    //   spells: spells as Spell[],
-    //   proficiencies: proficiencies,
-    //   languages: languages,
-    //   equipment: equipments,
-    //   features: features,
-    //   traits: traits,
-    // });
-    // console.log('from onSubmit ' + JSON.stringify(character));
     addCharacter({
       userId: user?._id,
       characterName: name as string,

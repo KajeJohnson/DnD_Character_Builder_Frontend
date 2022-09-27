@@ -12,28 +12,14 @@ import { Character } from "../types/character.types";
 export default function HomePage() {
   const { user } = useContext(AuthContext);
   const [userCharacters, setUserCharacters] = useState<Character[]>([]);
-  // const [opened, handlers] = useDisclosure(false);
-  //do we need character in place of user here?
 
   useEffect(() => {
     getUserCharacters(user?._id as string).then((characters) =>
       setUserCharacters(characters)
     );
-  }, []);
-  // const characters = [
-  //   { _id: "test", uid: "test", email: "test", displayName: "test" },
-  // ];
-
-  //added async
-  // const characters = useQuery(
-  //   [{}],
-  //   async () => await getUserCharacters(user?._id as string)
-  // );
-
-  // const { data: characters } = useQuery(
-  // 	["characters", user?._id],
-  // 	async () => await getUserCharacters(user?._id as string)
-  // );
+  }, [user]);
+  
+  console.log('in useeffect' + userCharacters)
 
   //use effect call service function set state
   console.log("user", user);
@@ -58,8 +44,10 @@ export default function HomePage() {
         <Link to={"/createCharacter"}>
           <button>New character</button>
           {/* {characters && <CharacterList characters={characters} />} */}
-          {userCharacters && <CharacterList characters={userCharacters} />}
         </Link>
+        
+        <CharacterList characters={userCharacters} />
+          {/* {userCharacters && <CharacterList characters={userCharacters} />} */}
 
         {/* below div is for testing - delete later -kj */}
         <div>

@@ -1,10 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { getUserCharacters } from "../services/character.service";
 import { Character } from "../types/character.types"
 import { Class } from "../types/characterOptions/classes.types";
 import { Language, Languages } from "../types/characterOptions/languages.types";
 
 export default function StatPage () {
     const [character, setCharacter] = useState<Character>();
+
+    // useEffect(() => {
+    //     getUserCharacters(user?._id as string)
+    //     .then((character) => setCharacter(character))
+    // })
+
+    //need to use route w params to find character from user array, and have a .map() link from the character list/user homepage for  each, and use end
 
 
     return (
