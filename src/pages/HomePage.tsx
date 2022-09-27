@@ -1,6 +1,6 @@
 import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CharacterList from "../components/CharacterList";
 import { AuthContext } from "../context/auth.context";
@@ -11,24 +11,31 @@ import { Character } from "../types/character.types";
 
 export default function HomePage() {
   const { user } = useContext(AuthContext);
+  const [userCharacters, setUserCharacters] = useState<Character[]>([]);
   // const [opened, handlers] = useDisclosure(false);
   //do we need character in place of user here?
 
+  useEffect(() => {
+    getUserCharacters(user?._id as string).then((characters) =>
+      setUserCharacters(characters)
+    );
+  }, []);
   // const characters = [
   //   { _id: "test", uid: "test", email: "test", displayName: "test" },
   // ];
 
   //added async
-  const characters = useQuery(
-    [{}],
-    async () => await getUserCharacters(user?._id as string)
-  );
+  // const characters = useQuery(
+  //   [{}],
+  //   async () => await getUserCharacters(user?._id as string)
+  // );
 
   // const { data: characters } = useQuery(
   // 	["characters", user?._id],
   // 	async () => await getUserCharacters(user?._id as string)
   // );
 
+  //use effect call service function set state
   console.log("user", user);
 
   const handleLogout = async () => {
@@ -45,13 +52,13 @@ export default function HomePage() {
           backgroundPosition: "center",
           backgroundSize: "cover",
           margin: "0",
-          color: "#fff"
+          color: "#fff",
         }}
       >
         <Link to={"/createCharacter"}>
           <button>New character</button>
           {/* {characters && <CharacterList characters={characters} />} */}
-          {characters.data && <CharacterList characters={characters.data} />}
+          {userCharacters && <CharacterList characters={userCharacters} />}
         </Link>
 
         {/* below div is for testing - delete later -kj */}
