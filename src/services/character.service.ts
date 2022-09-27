@@ -9,6 +9,11 @@ export async function getUserCharacters(userId: string) {
   return response.data;
 }
 
+export async function getUserCharacter(charId: string) {
+  const response = await axios.get<Character>(`/characters/${charId}`);
+  return response.data;
+}
+
 export async function addCharacter(data: Partial<Character>) {
   const response = await axios.post<Character>("/characters", data);
   return response.data;

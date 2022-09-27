@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react"
-import { getUserCharacters } from "../services/character.service";
+import { useParams } from "react-router-dom";
+import { getUserCharacter } from "../services/character.service";
 import { Character } from "../types/character.types"
-import { Class } from "../types/characterOptions/classes.types";
-import { Language, Languages } from "../types/characterOptions/languages.types";
 
 export default function StatPage () {
     const [character, setCharacter] = useState<Character>();
+    const {characterId} = useParams();
 
-    // useEffect(() => {
-    //     getUserCharacters(user?._id as string)
-    //     .then((character) => setCharacter(character))
-    // })
+
+    useEffect(() => {
+        getUserCharacter(characterId!)
+        .then((character) => setCharacter(character))
+    },[characterId])
 
     //need to use route w params to find character from user array, and have a .map() link from the character list/user homepage for  each, and use end
 
 
     return (
         <div>
-
                     <h3>{character?.characterName}</h3>
                     <p>{character?.class.name}</p>
                     <p>{character?.level}</p>

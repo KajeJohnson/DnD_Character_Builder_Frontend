@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
 import CharBuilder from "./pages/CharBuilderPage";
+import StatPage from "./pages/StatPage";
 
 function App() {
 	return (
@@ -27,6 +28,14 @@ function App() {
 					element={
 						<PrivateRoute>
 							<CharBuilder />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/character/:characterId"
+					element={
+						<PrivateRoute>
+							<StatPage />
 						</PrivateRoute>
 					}
 				/>
