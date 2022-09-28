@@ -19,10 +19,10 @@ export default function HomePage() {
     );
   }, [user]);
   
-  console.log('in useeffect' + userCharacters)
+  // console.log('in useeffect' + userCharacters)
 
   //use effect call service function set state
-  console.log("user", user);
+  // console.log("user", user);
 
   const handleLogout = async () => {
     logout();

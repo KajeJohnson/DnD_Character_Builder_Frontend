@@ -16,7 +16,7 @@ export default function CharacterList({ characters }: Props) {
   return (
     <div>
       {characters.map((character) => (
-        <div>
+        <div key={character._id}>
           <p onClick={() => navigate(`/character/${character?._id!}`)}>{character.characterName}</p>
         </div>
       ))}
