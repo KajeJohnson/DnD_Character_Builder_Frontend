@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchFeatures } from "../services/builder.service";
+import { fetchFeatures } from "../services/builderComponents.service";
 import { Feature } from "../types/characterOptions/features.types";
 
 interface Props {

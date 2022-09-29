@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchLanguages } from "../services/builder.service";
+import { fetchLanguages } from "../services/builderComponents.service";
 import { Language } from "../types/characterOptions/languages.types";
 
 interface Props {

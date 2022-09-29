@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchEquipments } from "../services/builder.service";
+import { fetchEquipments } from "../services/builderComponents.service";
 import { EquipmentType } from "../types/characterOptions/equipment.types";
 
 interface Props {

@@ -15,14 +15,18 @@ export default function StatPage () {
     
     //need to use route w params to find character from user array, and have a .map() link from the character list/user homepage for  each, and use end
     
-    console.log(character);
+    console.log('class ' + character?.characterClass);
+    console.log('race ' + character?.race);
+    console.log('alignment ' + character?.alignment);
+    console.log(character)
+
 
     return (
         <div>
                     <h2>{character?.characterName}</h2>
                     <p>level: {character?.level}</p>
                     <p>hit points:{character?.hitPoints}</p>
-                    <p>class: {character?.class.name}</p>
+                    <p>class: {character?.characterClass.name}</p>
                     <p>race: {character?.race.name}</p>
                     <p>alignment: {character?.alignment.name}</p>
                     <p>strenght: {character?.strength}</p>

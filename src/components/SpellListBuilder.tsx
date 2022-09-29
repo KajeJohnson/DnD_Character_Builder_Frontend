@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchSpells } from "../services/builder.service";
+import { fetchSpells } from "../services/builderComponents.service";
 import { Spell } from "../types/characterOptions/spells.types";
 
 interface Props {

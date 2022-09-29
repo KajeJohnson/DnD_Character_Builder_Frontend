@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchProficiencies } from "../services/builder.service";
+import { fetchProficiencies } from "../services/builderComponents.service";
 import { Proficiency } from "../types/characterOptions/proficiencies.types";
 
 interface Props {

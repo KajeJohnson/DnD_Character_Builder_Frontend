@@ -14,7 +14,12 @@ export async function getUserCharacter(charId: string) {
   return response.data;
 }
 
-export async function addCharacter(data: Partial<Character>) {
+// export async function addCharacter(data: Partial<Character>) {
+//   const response = await axios.post<Character>("/characters", data);
+//   return response.data;
+// }
+
+export async function addCharacter(data: Character) {
   const response = await axios.post<Character>("/characters", data);
   return response.data;
 }

@@ -14,7 +14,7 @@ import {
   fetchClasses,
   fetchRaces,
   fetchSpells,
-} from "../services/builder.service";
+} from "../services/builderComponents.service";
 import { Spell } from "../types/characterOptions/spells.types";
 import { Proficiency } from "../types/characterOptions/proficiencies.types";
 import { Language } from "../types/characterOptions/languages.types";
@@ -25,6 +25,7 @@ import { addCharacter } from "../services/character.service";
 import { useNavigate } from "react-router-dom";
 import { stringify } from "querystring";
 import { AuthContext } from "../context/auth.context";
+import { fetchAlignment, fetchClass, fetchRace } from "../services/builder.service";
 
 export default function CharBuilder() {
   const level = 1;
@@ -54,7 +55,7 @@ export default function CharBuilder() {
   const [armorClass, setArmorClass] = useState<number>();
   const [speed, setSpeed] = useState<string>("30 feet");
   const [hitPoints, setHitPoints] = useState<number>();
-
+  const [character, setCharacter] = useState<Character>();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -119,11 +120,12 @@ export default function CharBuilder() {
   }
 
   function handleSubmit(e: React.FormEvent) {
+    console.log(charClass);
     e.preventDefault();
     addCharacter({
       userId: user?._id,
       characterName: name as string,
-      class: charClass as Class,
+      characterClass: charClass as Class,
       level: level,
       race: race as Race,
       alignment: alignment as Alignment,
@@ -142,9 +144,13 @@ export default function CharBuilder() {
       languages: languages,
       equipment: equipments,
       features: features,
-      traits: traits,
+      traits: traits
     });
     navigate("/homepage");
+    console.log('class ' + character?.characterClass);
+    console.log('race ' + character?.race);
+    console.log('alignment ' + character?.alignment);
+    console.log(character)
   }
   //get list characters at endpoint and display them
 
@@ -170,9 +176,7 @@ export default function CharBuilder() {
 
           <select
             onChange={(e: any) =>
-              setRace(
-                races.find((race) => race.name === e.target.value) as Race
-              )
+              setRace(races.find((race)=> race.index === e.target.value))
             }
             aria-label="Select Character Race"
             name="race"
@@ -190,11 +194,7 @@ export default function CharBuilder() {
 
           <select
             onChange={(e: any) =>
-              setCharClass(
-                classes.find(
-                  (singleClass) => singleClass.name === e.target.value
-                ) as Class
-              )
+              setCharClass(classes.find((charClass)=> charClass.index === e.target.value))
             }
             aria-label="Select Character Class"
             name="class"
@@ -215,11 +215,7 @@ export default function CharBuilder() {
 
           <select
             onChange={(e: any) =>
-              setAlignment(
-                alignments.find(
-                  (alignment) => alignment.name === e.target.value
-                ) as Alignment
-              )
+              setAlignment(alignments.find((alignment)=> alignment.index === e.target.value))
             }
             aria-label="Select Character Alignment"
             name="alignment"
