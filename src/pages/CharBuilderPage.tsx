@@ -36,21 +36,9 @@ export default function CharBuilder() {
   const [spellOps, setSpellOps] = useState<Spell[]>([]);
 
   const [name, setName] = useState<string>("");
-  const [race, setRace] = useState<Race>({
-    index: "dragonborn",
-    name: "Dragonborn",
-    url: "/api/races/dragonborn",
-  });
-  const [charClass, setCharClass] = useState<Class>({
-    index: "barbarian",
-    name: "Barbarian",
-    url: "/api/classes/barbarian",
-  });
-  const [alignment, setAlignment] = useState<Alignment>({
-    index: "chaotic-evil",
-    name: "Chaotic Evil",
-    url: "/api/alignments/chaotic-evil",
-  });
+  const [race, setRace] = useState<Race>();
+  const [charClass, setCharClass] = useState<Class>();
+  const [alignment, setAlignment] = useState<Alignment>();
   const [spells, setSpells] = useState<Spell[]>([]);
   const [proficiencies, setProficiencies] = useState<Proficiency[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
