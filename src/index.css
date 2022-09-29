@@ -1,3 +1,10 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+/* <style> */
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
+/* </style> */
+
+* {
+  font-family: "Kalam", Georgia, "Times New Roman", Times, serif;
+}

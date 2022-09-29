@@ -49,25 +49,38 @@ export default function LoginPage() {
         }}
       >
         <div style={{ color: "white" }}>
-          <h1 style={{ paddingTop: "50px", margin: "0", fontSize: "40px" }}>
-            Dice & Details
-          </h1>
-          <h2>Greetings, Traveler! </h2>
-          <h3>Come spend some time with familiar faces </h3>
-          <h3>Or dare to make a new acquaintance </h3>
-          {/* <Link to={"/homepage"}> */}
-          <button
-            onClick={handleLogin}
-            className="bg-yellow-800 rounded hidden md:inline-block"
-          >
-            Hello friend
-          </button>
-          <button
-            onClick={handleSignup}
-            className="bg-yellow-800 rounded hidden md:inline-block"
-          >
-            Welcome stranger
-          </button>
+          <div>
+            <h1 style={{ paddingTop: "50px", margin: "0", fontSize: "80px" }}>
+              Dice & Details
+            </h1>
+          </div>
+          <div style={{ paddingTop: 40, fontSize: "20px" }}>
+            <h2>Greetings, Traveler! </h2>
+            <h3>Come spend some time with familiar faces </h3>
+            <h3>Or dare to make a new acquaintance </h3>
+            {/* <Link to={"/homepage"}> */}
+            <div
+              style={{
+                display: "flex",
+                //   alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <button
+                onClick={handleLogin}
+                className="bg-yellow-800 rounded hidden md:inline-block"
+              >
+                Hello friend! Log in here.
+              </button>
+              <div style={{ padding: 10 }}></div>
+              <button
+                onClick={handleSignup}
+                className="bg-yellow-800 rounded hidden md:inline-block"
+              >
+                Welcome stranger! Sign up here.
+              </button>
+            </div>
+          </div>
           {/* <button
 						onClick={handleMobileLogin}
 						className="bg-yellow-800 rounded sm:inline-block md:hidden"
@@ -81,7 +94,15 @@ export default function LoginPage() {
           {/* Welcome stranger
 					</button> */}
           {/* </Link> */}
-          <h4>This character builder is made for D&D5e</h4>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "0",
+              width: "100%",
+            }}
+          >
+            <h4>~ ~ ~ This is a character builder is made for D&D5e ~ ~ ~</h4>
+          </div>
           {/* <Link to={"/signup"}>
 						<button>Sign up</button>
 					</Link> */}

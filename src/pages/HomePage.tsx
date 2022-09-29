@@ -18,7 +18,7 @@ export default function HomePage() {
       setUserCharacters(characters)
     );
   }, [user]);
-  
+
   // console.log('in useeffect' + userCharacters)
 
   //use effect call service function set state
@@ -38,22 +38,26 @@ export default function HomePage() {
           backgroundPosition: "center",
           backgroundSize: "cover",
           margin: "0",
+          padding: "0",
           color: "#fff",
         }}
       >
-        <Link to={"/createCharacter"}>
-          <button>New character</button>
-          {/* {characters && <CharacterList characters={characters} />} */}
-        </Link>
-        
-        <CharacterList characters={userCharacters} />
+        <div style={{ paddingTop: 40 }}>
+          <div style={{ padding: 10 }}>
+            <Link to={"/createCharacter"}>
+              <button>New character</button>
+              {/* {characters && <CharacterList characters={characters} />} */}
+            </Link>
+          </div>
+          <CharacterList characters={userCharacters} />
           {/* {userCharacters && <CharacterList characters={userCharacters} />} */}
 
-        {/* below div is for testing - delete later -kj */}
-        <div>
-          <Link to={"/"}>
-            <button onClick={handleLogout}>Logout</button>
-          </Link>
+          {/* below div is for testing - delete later -kj */}
+          <div style={{ padding: 10 }}>
+            <Link to={"/"}>
+              <button onClick={handleLogout}>Logout</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

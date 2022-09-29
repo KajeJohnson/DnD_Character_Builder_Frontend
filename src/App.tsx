@@ -11,37 +11,37 @@ import CharBuilder from "./pages/CharBuilderPage";
 import StatPage from "./pages/StatPage";
 
 function App() {
-	return (
-		<div className="App">
-			<Routes>
-				<Route
-					path="/homepage"
-					element={
-						<PrivateRoute>
-							<HomePage />
-						</PrivateRoute>
-					}
-				/>
-				<Route path="/" element={<LoginPage />} />
-				<Route
-					path="/createCharacter"
-					element={
-						<PrivateRoute>
-							<CharBuilder />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/character/:characterId"
-					element={
-						<PrivateRoute>
-							<StatPage />
-						</PrivateRoute>
-					}
-				/>
-			</Routes>
-		</div>
-	);
+  return (
+    <div className="App">
+      <Routes>
+        <Route
+          path="/homepage"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/createCharacter"
+          element={
+            <PrivateRoute>
+              <CharBuilder />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/character/:characterId"
+          element={
+            <PrivateRoute>
+              <StatPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
