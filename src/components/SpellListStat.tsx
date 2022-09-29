@@ -5,11 +5,15 @@ interface SpellProps {
 }
 
 export default function SpellListStatForPage ({ spells }: SpellProps) {
+
+    console.log('spells: ' + spells)
     return (
         <div>
-            {/* {spells!.map((spell) =>{
-                <p>{spell.name}</p>
-            })} */}
+
+            {spells.map((spell) => 
+                <p>{spell.name}</p>)
+            }
+
         </div>
     )
 }

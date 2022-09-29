@@ -181,6 +181,7 @@ export default function CharBuilder() {
             aria-label="Select Character Race"
             name="race"
           >
+            <option value=""></option>
             <option value="dragonborn">Dragonborn</option>
             <option value="dwarf">Dwarf</option>
             <option value="elf">Elf</option>
@@ -199,6 +200,7 @@ export default function CharBuilder() {
             aria-label="Select Character Class"
             name="class"
           >
+            <option value=""></option>
             <option value="barbarian">Barbarian</option>
             <option value="bard">Bard</option>
             <option value="cleric">Cleric</option>
@@ -220,6 +222,7 @@ export default function CharBuilder() {
             aria-label="Select Character Alignment"
             name="alignment"
           >
+            <option value=""></option>
             <option value="chaotic-evil">Chaotic-Evil</option>
             <option value="chaotic-good">Chaotic-Good</option>
             <option value="chaotic-neutral">Chaotic-Neutral</option>

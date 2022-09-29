@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import SpellListStatForPage from "../components/SpellListStat";
 import { getUserCharacter } from "../services/character.service";
 import { Character } from "../types/character.types"
 
@@ -18,7 +19,7 @@ export default function StatPage () {
     console.log('class ' + character?.characterClass);
     console.log('race ' + character?.race);
     console.log('alignment ' + character?.alignment);
-    console.log(character)
+    console.log(character);
 
 
     return (
@@ -38,7 +39,8 @@ export default function StatPage () {
                     <p>proficiency bonus: {character?.proficiencyBonus}</p>
                     <p>armor class: {character?.armorClass}</p>
                     <p>speed: {character?.speed}</p>
-                    {/* <p>{character?.spells!}</p> // maybe use a component for the lists?
+                    {/* <SpellListStatForPage spells={character?.spells!} /> */}
+                    {/* <p>{character?.spells}</p> 
                     <p>{character?.proficiencies!}</p>
                     <p>{character?.languages!}</p>
                     <p>{character?.equipment!}</p>
