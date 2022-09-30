@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SpellListStatForPage from "../components/statComponents/SpellListStat";
 import { getUserCharacter } from "../services/character.service";
 import { Character } from "../types/character.types";
 import wiiiitchy from "../img/wiiiitchy.png";
@@ -10,6 +9,7 @@ import LangListStatPage from "../components/statComponents/LanguageListStat";
 import EquipListStatPage from "../components/statComponents/EquipListStat";
 import FeatListStatPage from "../components/statComponents/FeatListStat";
 import TraitListStatPage from "../components/statComponents/TraitListStat";
+
 
 export default function StatPage() {
   const [character, setCharacter] = useState<Character>();
@@ -29,19 +29,18 @@ export default function StatPage() {
   console.log(character);
 
   return (
-    <div>
-      <div
-        style={{
-          backgroundImage: `url(${wiiiitchy})`,
-          backgroundRepeat: "no-repeat",
-          height: "100vh",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          margin: "0",
-          padding: "0",
-          color: "#fff",
-        }}
-      >
+    <div
+      style={{
+      backgroundImage: `url(${wiiiitchy})`,
+      backgroundRepeat: "no-repeat",
+      height: "100vh",
+      backgroundPosition: "fixed",
+      backgroundSize: "cover",
+      margin: "0",
+      padding: "0",
+      color: "#fff",
+    }}>
+      <div>
         <div style={{ paddingTop: 40 }}>
           <h2>{character?.characterName}</h2>
         </div>
