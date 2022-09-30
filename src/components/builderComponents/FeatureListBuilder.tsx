@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchFeatures } from "../services/builderComponents.service";
-import { Feature } from "../types/characterOptions/features.types";
+import { fetchFeatures } from "../../services/builderComponents.service";
+import { Feature } from "../../types/characterOptions/features.types";
 
 interface Props {
     onChange: (features: Feature[]) => void;

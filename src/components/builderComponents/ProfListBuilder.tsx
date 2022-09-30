@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchProficiencies } from "../services/builderComponents.service";
-import { Proficiency } from "../types/characterOptions/proficiencies.types";
+import { fetchProficiencies } from "../../services/builderComponents.service";
+import { Proficiency } from "../../types/characterOptions/proficiencies.types";
 
 interface Props {
     onChange: (proficiencies: Proficiency[]) => void;

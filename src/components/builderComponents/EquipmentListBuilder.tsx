@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchEquipments } from "../services/builderComponents.service";
-import { EquipmentType } from "../types/characterOptions/equipment.types";
+import { fetchEquipments } from "../../services/builderComponents.service";
+import { EquipmentType } from "../../types/characterOptions/equipment.types";
 
 interface Props {
     onChange: (equipments: EquipmentType[]) => void;

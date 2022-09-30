@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SpellListStatForPage from "../components/SpellListStat";
+import SpellListStatForPage from "../components/statComponents/SpellListStat";
 import { getUserCharacter } from "../services/character.service";
 import { Character } from "../types/character.types";
 import wiiiitchy from "../img/wiiiitchy.png";
+import SpellListStatPage from "../components/statComponents/SpellListStat";
+import ProfListStatPage from "../components/statComponents/profListStat";
+import LangListStatPage from "../components/statComponents/LanguageListStat";
+import EquipListStatPage from "../components/statComponents/EquipListStat";
+import FeatListStatPage from "../components/statComponents/FeatListStat";
+import TraitListStatPage from "../components/statComponents/TraitListStat";
 
 export default function StatPage() {
   const [character, setCharacter] = useState<Character>();
@@ -18,6 +24,8 @@ export default function StatPage() {
   console.log("class " + character?.characterClass);
   console.log("race " + character?.race);
   console.log("alignment " + character?.alignment);
+  console.log('spells on charBuilder: ' + character?.spells)
+
   console.log(character);
 
   return (
@@ -38,7 +46,7 @@ export default function StatPage() {
           <h2>{character?.characterName}</h2>
         </div>
         <p>level: {character?.level}</p>
-        <p>hit points:{character?.hitPoints}</p>
+        <p>hit points: {character?.hitPoints}</p>
         <p>class: {character?.characterClass.name}</p>
         <p>race: {character?.race.name}</p>
         <p>alignment: {character?.alignment.name}</p>
@@ -51,13 +59,12 @@ export default function StatPage() {
         <p>proficiency bonus: {character?.proficiencyBonus}</p>
         <p>armor class: {character?.armorClass}</p>
         <p>speed: {character?.speed}</p>
-        {/* <SpellListStatForPage spells={character?.spells!} /> */}
-        {/* <p>{character?.spells}</p> 
-                    <p>{character?.proficiencies!}</p>
-                    <p>{character?.languages!}</p>
-                    <p>{character?.equipment!}</p>
-                    <p>{character?.features!}</p>
-                    <p>{character?.traits!}</p> */}
+        {character?.spells ? <SpellListStatPage spells={character?.spells} /> : <p>no spells</p>}
+        {character?.proficiencies ? <ProfListStatPage profs={character?.proficiencies} /> : <p>no proficiencies</p>}
+        {character?.languages ? <LangListStatPage langs={character?.languages} /> : <p>no languages</p>}
+        {character?.equipment ? <EquipListStatPage equips={character?.equipment} /> : <p>no equipment</p>}
+        {character?.features ? <FeatListStatPage feats={character?.features} /> : <p>no features</p>}
+        {character?.traits ? <TraitListStatPage traits={character?.traits} /> : <p>no traits</p>}
       </div>
     </div>
   );

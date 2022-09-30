@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { Race } from "../types/characterOptions/race.types";
 import { Class } from "../types/characterOptions/classes.types";
 import { Alignment } from "../types/characterOptions/alignments.types";
-import SpellListBuilder from "../components/SpellListBuilder";
-import ProficiencyListBuilder from "../components/ProfListBuilder";
-import LanguageListBuilder from "../components/LanguageListBuilder";
-import EquipmentListBuilder from "../components/EquipmentListBuilder";
-import FeatureListBuilder from "../components/FeatureListBuilder";
-import TraitListBuilder from "../components/TraitListBuilder";
+import SpellListBuilder from "../components/builderComponents/SpellListBuilder";
+import ProficiencyListBuilder from "../components/builderComponents/ProfListBuilder";
+import LanguageListBuilder from "../components/builderComponents/LanguageListBuilder";
+import EquipmentListBuilder from "../components/builderComponents/EquipmentListBuilder";
+import FeatureListBuilder from "../components/builderComponents/FeatureListBuilder";
+import TraitListBuilder from "../components/builderComponents/TraitListBuilder";
 import { Character } from "../types/character.types";
 import {
   fetchAlignments,

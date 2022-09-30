@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
-import { fetchTraits } from "../services/builderComponents.service";
-import { Trait } from "../types/characterOptions/traits.types";
+import { fetchLanguages } from "../../services/builderComponents.service";
+import { Language } from "../../types/characterOptions/languages.types";
 
 interface Props {
-    onChange: (traits: Trait[]) => void;
+    onChange: (languages: Language[]) => void;
 }
 
-export default function TraitListBuilder ({ onChange }: Props) {
-    const [traitOps, setTraitOps] = useState<Trait[]>([]);
-    const [charTraits, setCharTraits] = useState<Trait[]>([]);
+export default function LanguageListBuilder ({ onChange }: Props) {
+    const [langOps, setLangOps] = useState<Language[]>([]);
+    const [charLangs, setCharLangs] = useState<Language[]>([]);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        fetchTraits().then((traits) => {
-          setTraitOps(traits);
+        fetchLanguages().then((languages) => {
+          setLangOps(languages);
         });
       }, []);
 
-    function addTrait(selectedTrait: Trait) {
-        const traitAlreadyChosen = charTraits.find((trait) => trait.name === selectedTrait.name);
-        if (!traitAlreadyChosen) {
-        setCharTraits([selectedTrait, ...charTraits]);
+    function addLang(selectedLang: Language) {
+        const langAlreadyChosen = charLangs.find((language) => language.name === selectedLang.name);
+        if (!langAlreadyChosen) {
+        setCharLangs([selectedLang, ...charLangs]);
         }
     }
 
-    function removeTrait(name: string) {
-        const index = charTraits.findIndex((trait) => trait.name === name);
-        let newArray = charTraits.slice(0)
+    function removeLang(name: string) {
+        const index = charLangs.findIndex((language) => language.name === name);
+        let newArray = charLangs.slice(0)
         newArray.splice(index, 1)
-        setCharTraits(newArray);
+        setCharLangs(newArray);
     }
 
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -41,24 +41,24 @@ export default function TraitListBuilder ({ onChange }: Props) {
 
       return (
         <div>
-            <h3> Traits </h3>
+            <h3> Languages </h3>
             <div style={styles.container} onScroll={scrollHandler}>
-          {traitOps.map((trait) => (
-              <div key={trait.index} style={styles.item}>
+          {langOps.map((language) => (
+              <div key={language.index} style={styles.item}>
 
-                    {trait.name}
+                    {language.name}
 
-                    <button onClick={() => addTrait(trait)} type='button'>
-                        add trait
+                    <button onClick={() => addLang(language)} type='button'>
+                        add language
                     </button>
 
-                    <button onClick={() => removeTrait(trait.name)} type='button'>
-                        remove  trait
+                    <button onClick={() => removeLang(language.name)} type='button'>
+                        remove  language
                     </button>
             </div>
           ))}
             </div>
-            <button onClick={() => {onChange(charTraits as Trait[])}} type='button'>add selected traits to character</button>
+            <button onClick={() => {onChange(charLangs as Language[])}} type='button'>add selected languages to character</button>
         </div>
       );
 }
