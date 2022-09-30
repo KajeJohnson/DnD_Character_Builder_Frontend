@@ -33,7 +33,6 @@ export default function ProfListStatPage ({ profs }: ProfProps) {
     } else {
         return (
             <div>
-                <p>no proficiencies</p>
             </div>
         )
     }

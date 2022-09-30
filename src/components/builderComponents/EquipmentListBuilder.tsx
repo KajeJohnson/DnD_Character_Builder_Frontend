@@ -75,27 +75,11 @@ const styles = {
         overflowY: "auto",
         overflowX: "hidden",
     },
-    list: {
-        width: "100%",
-    },
     item: {
         margin: "20px 25px",
         padding: "30px 20px",
         boxShadow: "0 2px 4px #999",
         fontSize: "18px",
         textAlign: "center",
-    },
-    progressBar: {
-        width: 600,
-        height: 20,
-        margin: "auto",
-        backgroundColor: "#bbb",
-    },
-    progressValue: {
-        height: "100%",
-        backgroundColor: "blue",
-    },
-    text: {
-        textAlign: 'center'
     }
 } as const;

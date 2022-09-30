@@ -23,3 +23,9 @@ export async function addCharacter(data: Character) {
   const response = await axios.post<Character>("/characters", data);
   return response.data;
 }
+
+export async function deleteCharacter(charId: string) {
+  const response = await axios.delete(`/characters/${charId}` );
+  window.location.reload();
+  return response.data;
+}

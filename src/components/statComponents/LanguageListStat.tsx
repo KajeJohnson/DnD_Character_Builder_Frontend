@@ -35,7 +35,6 @@ export default function LangListStatPage ({ langs }: LangProps) {
     } else {
         return (
             <div>
-                <p>no languages</p>
             </div>
         )
     }

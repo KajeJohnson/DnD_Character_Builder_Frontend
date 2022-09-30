@@ -34,7 +34,6 @@ export default function EquipListStatPage ({ equips }: EquipProps) {
     } else {
         return (
             <div>
-                <p>no equipment</p>
             </div>
         )
     }   

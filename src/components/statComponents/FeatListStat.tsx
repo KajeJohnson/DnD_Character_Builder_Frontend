@@ -34,7 +34,6 @@ export default function FeatListStatPage ({ feats }: FeatProps) {
     } else {
         return (
             <div>
-                <p>no features</p>
             </div>
         )
     }

@@ -34,7 +34,6 @@ export default function SpellListStatPage ({ spells }: SpellProps) {
     } else {
         return (
             <div>
-                <p>no spells</p>
             </div>
         )
     }
