@@ -30,16 +30,37 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* <style>
+          
+            div.scroll {
+                margin: "4px, 4px",
+                padding:"4px",
+               
+                width: 500px;
+                height: 110px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+            }
+        </style> */}
       <div
         style={{
           backgroundImage: `url(${inside})`,
           backgroundRepeat: "no-repeat",
           height: "100vh",
           backgroundPosition: "center",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          minWidth: "100%",
+          minHeight: "100%",
           backgroundSize: "cover",
           margin: "0",
           padding: "0",
           color: "#fff",
+          overflowX: "hidden",
+          overflowY: "auto",
+          // textAlign: "justify",
         }}
       >
         <div style={{ paddingTop: 40 }}>
