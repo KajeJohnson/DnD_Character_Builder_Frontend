@@ -66,9 +66,10 @@ export default function HomePage() {
       >
         <NavBar />
         <div style={{ paddingTop: 40 }}>
+      <p>click yer character for their info</p>
           <div style={{ padding: 10 }}>
             <Link to={"/createCharacter"}>
-              <button>New character</button>
+              <button>add a new character</button>
               {/* {characters && <CharacterList characters={characters} />} */}
             </Link>
           </div>

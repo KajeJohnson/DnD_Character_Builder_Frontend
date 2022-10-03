@@ -16,11 +16,21 @@ export default function CharacterList({ characters }: Props) {
   return (
     <div>
       {characters.map((character) => (
-        <div key={character._id}>
-          <p onClick={() => navigate(`/character/${character?._id!}`)}>{character.characterName}</p>
-          <button onClick={() => deleteCharacter(character._id!)}>delete character</button>
+        <div key={character._id} style={styles.charBox}>
+          <button style={styles.button} onClick={() => navigate(`/character/${character?._id!}`)}>{character.characterName}</button>
+          <button style={styles.button} onClick={() => deleteCharacter(character._id!)}>delete {character.characterName}</button>
         </div>
       ))}
     </div>
   );
 }
+// styling
+const styles = {
+  charBox: {
+    display: "flex",
+    justifyContent: "center"
+  },
+  button: {
+    margin: "10px",
+  }
+} as const;
