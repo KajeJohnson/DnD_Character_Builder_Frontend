@@ -8,6 +8,7 @@ import { logout } from "../services/auth.service";
 import inside from "../img/inside.png";
 import { getUserCharacters } from "../services/character.service";
 import { Character } from "../types/character.types";
+import NavBar from "../components/navbar";
 
 export default function HomePage() {
   const { user } = useContext(AuthContext);
@@ -63,6 +64,7 @@ export default function HomePage() {
           // textAlign: "justify",
         }}
       >
+        <NavBar />
         <div style={{ paddingTop: 40 }}>
           <div style={{ padding: 10 }}>
             <Link to={"/createCharacter"}>
@@ -74,11 +76,11 @@ export default function HomePage() {
           {/* {userCharacters && <CharacterList characters={userCharacters} />} */}
 
           {/* below div is for testing - delete later -kj */}
-          <div style={{ padding: 10 }}>
+          {/* <div style={{ padding: 10 }}>
             <Link to={"/"}>
               <button onClick={handleLogout}>Logout</button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

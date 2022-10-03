@@ -9,6 +9,7 @@ import LangListStatPage from "../components/statComponents/LanguageListStat";
 import EquipListStatPage from "../components/statComponents/EquipListStat";
 import FeatListStatPage from "../components/statComponents/FeatListStat";
 import TraitListStatPage from "../components/statComponents/TraitListStat";
+import NavBar from "../components/navbar";
 
 
 export default function StatPage() {
@@ -30,6 +31,7 @@ export default function StatPage() {
 
   return (
     <div style={styles.container}>
+      <NavBar />
       <div>
         <div>
           <h2>{character?.characterName}</h2>

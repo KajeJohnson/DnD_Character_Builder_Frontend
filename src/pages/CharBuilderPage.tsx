@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { stringify } from "querystring";
 import { AuthContext } from "../context/auth.context";
 import { fetchAlignment, fetchClass, fetchRace } from "../services/builder.service";
+import NavBar from "../components/navbar";
 
 export default function CharBuilder() {
   const level = 1;
@@ -157,6 +158,7 @@ export default function CharBuilder() {
   return (
     <div>
       <div style={styles.container}>
+        <NavBar />
         <form onSubmit={handleSubmit}>
           <h2>Let's make yer level 1 character</h2>
           <p>
