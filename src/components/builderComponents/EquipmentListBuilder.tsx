@@ -24,11 +24,36 @@ export default function EquipmentListBuilder({ onChange }: Props) {
       (equipment) => equipment.name === selectedEquipment.name
     );
     if (!equipAlreadyChosen) {
+      console.log("arrayb4", charEquips);
       setCharEquips([selectedEquipment, ...charEquips]);
+
       console.log("addequip", selectedEquipment);
       console.log("equiparray", charEquips);
+      console.log("selected index", selectedEquipment.index);
+      console.log("equip index");
     }
   }
+
+  //   function addEquip(selectedEquipment: EquipmentType) {
+  //     const equipAlreadyChosen = charEquips.find(
+  //       (equipment) => equipment.name === selectedEquipment.name
+  //     );
+  //     if (!equipAlreadyChosen) {
+  //       console.log("arrayb4", charEquips);
+  //       setCharEquips([selectedEquipment, ...charEquips]);
+
+  //       console.log("addequip", selectedEquipment);
+  //       console.log("equiparray", charEquips);
+  //       console.log("selected index", selectedEquipment.index);
+  //       console.log("equip index");
+  //     }
+  //   }
+
+  //item isn't being added property, only adding first clicked item when second item is click, but only displaying first item
+  //it's logging the correct thing clicked, but sets the array to empty
+
+  //not displaying on stat page - showing only one thing clicked (last in array which is first clicked)-if you're in the inspector in the stat page for the selected character, you can see the array correctly in the console.
+  //is not having initial array part of it? display is deffo an issue
 
   function removeEquip(name: string) {
     const index = charEquips.findIndex((equipment) => equipment.name === name);
@@ -48,6 +73,7 @@ export default function EquipmentListBuilder({ onChange }: Props) {
   return (
     <div>
       <h3> Equipment </h3>
+
       <div style={styles.container} onScroll={scrollHandler}>
         {equipmentOps.map((equipment) => (
           <div key={equipment.index} style={styles.item}>
