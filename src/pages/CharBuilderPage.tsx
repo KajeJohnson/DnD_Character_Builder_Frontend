@@ -156,13 +156,15 @@ export default function CharBuilder() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#fff3c9" }}>
+      <div style={styles.container}>
         <form onSubmit={handleSubmit}>
           <h2>Let's make yer level 1 character</h2>
           <p>
             This builder expects ye to know yer rules, so have yer handbook
             ready
           </p>
+
+          <div style={styles.box}>
 
           <label htmlFor="name">
             Name yer character:
@@ -174,6 +176,8 @@ export default function CharBuilder() {
             />
           </label>
 
+          <label htmlFor="race">
+            Select yer race:
           <select
             onChange={(e: any) =>
               setRace(races.find((race)=> race.index === e.target.value))
@@ -192,7 +196,10 @@ export default function CharBuilder() {
             <option value="human">Human</option>
             <option value="tiefling">Tiefling</option>
           </select>
+          </label>
 
+          <label htmlFor="class">
+            Select yer class:
           <select
             onChange={(e: any) =>
               setCharClass(classes.find((charClass)=> charClass.index === e.target.value))
@@ -214,7 +221,10 @@ export default function CharBuilder() {
             <option value="warlock">Warlock</option>
             <option value="wizard">Wizard</option>
           </select>
+          </label>
 
+          <label htmlFor="alignment">
+            Select yer alignment:
           <select
             onChange={(e: any) =>
               setAlignment(alignments.find((alignment)=> alignment.index === e.target.value))
@@ -233,6 +243,7 @@ export default function CharBuilder() {
             <option value="neutral-evil">Neutral-Evil</option>
             <option value="neutral-good">Neutral-Good</option>
           </select>
+          </label>
 
           <label htmlFor="stats">
             Enter in yer stats:
@@ -312,7 +323,8 @@ export default function CharBuilder() {
               onChange={(e) => setHitPoints(Number(e.target.value))}
             />
           </label>
-
+          </div>
+            <div style={styles.lists}>
           <SpellListBuilder onChange={appendSpells} />
 
           <ProficiencyListBuilder onChange={appendProficiencies} />
@@ -324,12 +336,47 @@ export default function CharBuilder() {
           <FeatureListBuilder onChange={appendFeatures} />
 
           <TraitListBuilder onChange={appendTraits} />
+            </div>
 
-          <button onClick={handleSubmit} type="submit">
-            submit
+          <button style={{margin: "30px", padding: "10px"}} onClick={handleSubmit} type="submit">
+            submit character
           </button>
         </form>
       </div>
     </div>
   );
 }
+
+
+const styles = {
+  container: {
+      height: "100vh",
+      margin: "0",
+      overflowY: "auto",
+      overflowX: "hidden",
+      backgroundColor: "#000",
+      backgroundPosition: "center",
+      position: "fixed",
+      padding: "0",
+      color: "#fff",
+      top: "0",
+      left: "0",
+      minWidth: "100%",
+      minHeight: "100%",
+  },
+  box: {
+      display: "flex",
+      flexDisplay: "row",
+      justifyContent: "space-between",
+    flexWrap: "wrap",
+      backgroundColor: "#000",
+      padding: "10px",
+  },
+  lists: {
+    display: "flex",
+    flexDisplay: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  }
+} as const;
+

@@ -71,7 +71,7 @@ export default function EquipmentListBuilder({ onChange }: Props) {
   };
 
   return (
-    <div>
+    <div style={{margin: "20px"}}>
       <h3> Equipment </h3>
 
       <div style={styles.container} onScroll={scrollHandler}>
@@ -109,6 +109,7 @@ const styles = {
     margin: "30px auto",
     overflowY: "auto",
     overflowX: "hidden",
+    backgroundColor: "#1a1918",
   },
   item: {
     margin: "20px 25px",
@@ -116,5 +117,9 @@ const styles = {
     boxShadow: "0 2px 4px #999",
     fontSize: "18px",
     textAlign: "center",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#000",
   },
 } as const;

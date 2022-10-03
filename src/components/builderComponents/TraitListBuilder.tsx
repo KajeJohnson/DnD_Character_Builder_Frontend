@@ -40,7 +40,7 @@ export default function TraitListBuilder ({ onChange }: Props) {
       };
 
       return (
-        <div>
+        <div style={{margin: "20px"}}>
             <h3> Traits </h3>
             <div style={styles.container} onScroll={scrollHandler}>
           {traitOps.map((trait) => (
@@ -66,33 +66,22 @@ export default function TraitListBuilder ({ onChange }: Props) {
 // Styling
 const styles = {
     container: {
-        width: 500,
-        height: 400,
-        margin: "30px auto",
-        overflowY: "auto",
-        overflowX: "hidden",
-    },
-    list: {
-        width: "100%",
+      width: 500,
+      height: 400,
+      margin: "30px auto",
+      overflowY: "auto",
+      overflowX: "hidden",
+      backgroundColor: "#1a1918",
     },
     item: {
-        margin: "20px 25px",
-        padding: "30px 20px",
-        boxShadow: "0 2px 4px #999",
-        fontSize: "18px",
-        textAlign: "center",
+      margin: "20px 25px",
+      padding: "30px 20px",
+      boxShadow: "0 2px 4px #999",
+      fontSize: "18px",
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      backgroundColor: "#000",
     },
-    progressBar: {
-        width: 600,
-        height: 20,
-        margin: "auto",
-        backgroundColor: "#bbb",
-    },
-    progressValue: {
-        height: "100%",
-        backgroundColor: "blue",
-    },
-    text: {
-        textAlign: 'center'
-    }
-} as const;
+  } as const;

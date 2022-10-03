@@ -40,12 +40,21 @@ export default function LoginPage() {
     <div>
       <div
         style={{
+          height: "100vh",
+          margin: "0",
+          overflowY: "auto",
+          overflowX: "hidden",
           backgroundImage: `url(${gobbyboiii})`,
           backgroundRepeat: "no-repeat",
-          height: "100vh",
-          backgroundPosition: "center",
           backgroundSize: "cover",
-          margin: "0",
+          padding: "0",
+          color: "#fff",
+          backgroundPosition: "center",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          minWidth: "100%",
+          minHeight: "100%",
         }}
       >
         <div style={{ color: "white" }}>

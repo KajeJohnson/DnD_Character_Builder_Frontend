@@ -74,15 +74,20 @@ export default function StatPage() {
 const styles = {
   container: {
       height: "100vh",
-      margin: "0px",
+      margin: "0",
       overflowY: "auto",
       overflowX: "hidden",
       backgroundImage: `url(${wiiiitchy})`,
       backgroundRepeat: "no-repeat",
-      backgroundPosition: "fixed",
       backgroundSize: "cover",
       padding: "0",
       color: "#fff",
+      backgroundPosition: "center",
+      position: "fixed",
+      top: "0",
+      left: "0",
+      minWidth: "100%",
+      minHeight: "100%",
   },
   box: {
       width: "90vh",
