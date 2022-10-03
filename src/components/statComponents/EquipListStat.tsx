@@ -10,14 +10,22 @@ export default function EquipListStatPage({ equips }: EquipProps) {
   const [selectedEquips, setSelectedEquips] = useState<EquipmentType[]>([]);
 
   useEffect(() => {
-    for (const equip of equips) {
-      fetchEquipment(equip.index).then((equip) => {
-        console.log("after .then: " + JSON.stringify(equip));
-        setSelectedEquips([...selectedEquips, equip]);
-      });
-      // break;
-    }
-  }, []);
+        equips.filter(equip =>
+            fetchEquipment(equip.index)
+            .then((equip) => {
+                    console.log("after .then: " + JSON.stringify(equip));
+                    setSelectedEquips([equip]);
+                  })
+            )
+    // for (let i = 0; i < equips.length; i++) {
+    //   fetchEquipment(equips[i].index)
+    //   .then((equip) => {
+    //     console.log("after .then: " + JSON.stringify(equip));
+    //     setSelectedEquips([...selectedEquips, equip]);
+    //   });
+    //   break;
+    // }
+  },[]);
 
   if (selectedEquips.length > 0) {
     return (
