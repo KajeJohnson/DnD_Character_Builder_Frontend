@@ -34,7 +34,7 @@ export default function StatPage() {
       <NavBar />
       <div>
         <div>
-          <h2>{character?.characterName}</h2>
+          <h1>{character?.characterName}</h1>
         </div>
         <div style={styles.box}>
           <p>level: {character?.level}</p>
@@ -92,7 +92,7 @@ const styles = {
       minHeight: "100%",
   },
   box: {
-      width: "90vh",
+      width: "90%",
       marginLeft: "auto",
       marginRight: "auto",
       marginTop: "20px",

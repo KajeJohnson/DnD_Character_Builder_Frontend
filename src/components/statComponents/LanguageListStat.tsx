@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { fetchLanguage } from "../../services/statPage.service";
 import { Language } from "../../types/characterOptions/languages.types";
@@ -16,7 +15,6 @@ export default function LangListStatPage({ langs }: LangProps) {
       fetchLanguage(lang.index)
       .then((lang) => {
           if(!ignore){
-                  // console.log("after .then: " + JSON.stringify(lang));
                   setSelectedLangs((prev) => [...prev, lang]);
                 }
                 })
@@ -26,12 +24,12 @@ export default function LangListStatPage({ langs }: LangProps) {
 
   if (selectedLangs.length > 0) {
     return (
-      <div>
-        <h4>Languages:</h4>
+      <div style={styles.container}>
+        <h3>Languages:</h3>
         {selectedLangs.map((lang) => (
-          <div key={lang.index}>
-            <p>{lang.name}</p>
-            <p>{lang.typical_speakers}</p>
+          <div key={lang.index} style={{textAlign: 'left'}}>
+            <h4>{lang.name}</h4>
+            <li style={styles.info}>typical speakers: {lang.typical_speakers}</li>
           </div>
         ))}
       </div>
@@ -39,4 +37,15 @@ export default function LangListStatPage({ langs }: LangProps) {
   } else {
     return <div></div>;
   }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px"
+  },
+  info: {
+    marginTop: "5px"
+  },
 }

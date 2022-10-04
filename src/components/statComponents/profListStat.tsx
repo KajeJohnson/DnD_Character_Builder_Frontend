@@ -25,16 +25,24 @@ export default function ProfListStatPage({ profs }: ProfProps) {
 
   if (selectedProfs.length > 0) {
     return (
-      <div>
-        <h4>Proficiencies:</h4>
+      <div style={styles.container}>
+        <h3>Proficiencies:</h3>
         {selectedProfs.map((prof) => (
           <div key={prof.index}>
-            <p>{prof.name}</p>
+            <h4 style={{textAlign: 'left'}}>{prof.name}</h4>
           </div>
         ))}
       </div>
     );
   } else {
     return <div></div>;
+  }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px"
   }
 }

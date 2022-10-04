@@ -15,7 +15,6 @@ export default function EquipListStatPage({ equips }: EquipProps) {
       fetchEquipment(equip.index)
       .then((equip) => {
           if(!ignore){
-                  // console.log("after .then: " + JSON.stringify(equip));
                   setSelectedEquips((prev) => [...prev, equip]);
                 }
                 })
@@ -25,12 +24,12 @@ export default function EquipListStatPage({ equips }: EquipProps) {
 
   if (selectedEquips.length > 0) {
     return (
-      <div>
-        <h4>Equipment:</h4>
+      <div style={styles.container}>
+        <h3>Equipment:</h3>
         {selectedEquips.map((equip) => (
-          <div key={equip.index}>
-            <p>{equip.name}</p>
-            <p>{equip.desc}</p>
+          <div key={equip.index} style={{textAlign: 'left'}}>
+            <h4>{equip.name}</h4>
+            <li style={styles.info}>{equip.desc}</li>
           </div>
         ))}
       </div>
@@ -38,4 +37,15 @@ export default function EquipListStatPage({ equips }: EquipProps) {
   } else {
     return <div></div>;
   }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px",
+  },
+  info: {
+    marginTop: "5px"
+  },
 }

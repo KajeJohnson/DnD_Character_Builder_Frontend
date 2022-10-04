@@ -9,16 +9,6 @@ interface SpellProps {
 export default function SpellListStatPage({ spells }: SpellProps) {
   const [selectedSpells, setSelectedSpells] = useState<Spell[]>([]);
 
-  //   useEffect(() => {
-  //     for (const spell of spells) {
-  //       fetchSpell(spell.index).then((spell) => {
-  //         console.log("after .then: " + JSON.stringify(spell));
-  //         setSelectedSpells([...selectedSpells, spell]);
-  //       });
-  //       // break;
-  //     }
-  //   }, []);
-
   useEffect(() => {
     let ignore = false;
     spells.forEach((spell) =>
@@ -35,12 +25,12 @@ export default function SpellListStatPage({ spells }: SpellProps) {
 
   if (selectedSpells.length > 0) {
     return (
-      <div>
-        <h4>Spells:</h4>
+      <div  style={styles.container}>
+        <h3>Spells:</h3>
         {selectedSpells.map((spell) => (
-          <div key={spell.index}>
-            <p>{spell.name}</p>
-            <p>{spell.desc}</p>
+          <div key={spell.index} style={{textAlign: 'left'}}>
+            <h4>{spell.name}</h4>
+            <li style={styles.info}>{spell.desc}</li>
           </div>
         ))}
       </div>
@@ -48,4 +38,15 @@ export default function SpellListStatPage({ spells }: SpellProps) {
   } else {
     return <div></div>;
   }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px"
+  },
+  info: {
+    marginTop: "5px"
+  },
 }

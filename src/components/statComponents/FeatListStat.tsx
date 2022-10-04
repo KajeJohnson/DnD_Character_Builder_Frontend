@@ -25,12 +25,12 @@ export default function FeatListStatPage({ feats }: FeatProps) {
 
   if (selectedFeats.length > 0) {
     return (
-      <div>
-        <h4>Features:</h4>
+      <div style={styles.container}>
+        <h3>Features:</h3>
         {feats.map((feat) => (
-          <div key={feat.index}>
-            <p>{feat.name}</p>
-            <p>{feat.desc}</p>
+          <div key={feat.index} style={{textAlign: 'left'}}>
+            <h4>{feat.name}</h4>
+            {/* <li>{feat.prerequisites}</li> */}
           </div>
         ))}
       </div>
@@ -38,4 +38,12 @@ export default function FeatListStatPage({ feats }: FeatProps) {
   } else {
     return <div></div>;
   }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px"
+  },
 }

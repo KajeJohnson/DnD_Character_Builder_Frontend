@@ -9,15 +9,6 @@ interface TraitProps {
 export default function TraitListStatPage({ traits }: TraitProps) {
   const [selectedTraits, setSelectedTraits] = useState<Trait[]>([]);
 
-  //   useEffect(() => {
-  //     for (const trait of traits) {
-  //       fetchTrait(trait.index).then((trait) => {
-  //         console.log("after .then: " + JSON.stringify(trait));
-  //         setSelectedTraits([...selectedTraits, trait]);
-  //       });
-  //       // break;
-  //     }
-  //   }, []);
   useEffect(() => {
     let ignore = false;
     traits.forEach((trait) =>
@@ -35,12 +26,12 @@ export default function TraitListStatPage({ traits }: TraitProps) {
 
   if (selectedTraits.length > 0) {
     return (
-      <div>
-        <h4>Traits:</h4>
+      <div style={styles.container}>
+        <h3>Traits:</h3>
         {selectedTraits.map((trait) => (
-          <div key={trait.index}>
-            <p>{trait.name}</p>
-            <p>{trait.desc}</p>
+          <div key={trait.index} style={{textAlign: 'left'}}>
+            <h4>{trait.name}</h4>
+            <li style={styles.info}>{trait.desc}</li>
           </div>
         ))}
       </div>
@@ -48,4 +39,15 @@ export default function TraitListStatPage({ traits }: TraitProps) {
   } else {
     return <div></div>;
   }
+}
+
+// styling
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px"
+  },
+  info: {
+    marginTop: "5px"
+  },
 }
