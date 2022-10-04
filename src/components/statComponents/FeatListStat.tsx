@@ -10,13 +10,17 @@ export default function FeatListStatPage({ feats }: FeatProps) {
   const [selectedFeats, setSelectedFeats] = useState<Feature[]>([]);
 
   useEffect(() => {
-    for (const feat of feats) {
-      fetchFeature(feat.index).then((feat) => {
-        console.log("after .then: " + JSON.stringify(feat));
-        setSelectedFeats([...selectedFeats, feat]);
-      });
-      // break;
-    }
+    let ignore = false;
+    feats.forEach((feat) =>
+      fetchFeature(feat.index)
+      .then((feat) => {
+          if(!ignore){
+                  // console.log("after .then: " + JSON.stringify(feat));
+                  setSelectedFeats((prev) => [...prev, feat]);
+                }
+                })
+          )
+    return () => { ignore = true }
   }, []);
 
   if (selectedFeats.length > 0) {
