@@ -382,7 +382,7 @@ const styles = {
     minWidth: "100%",
     minHeight: "100%",
     padding: "0",
-    // color: "#fff",
+    color: "#fff",
     top: "0",
     left: "0",
   },
