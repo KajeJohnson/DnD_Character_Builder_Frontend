@@ -9,14 +9,28 @@ interface SpellProps {
 export default function SpellListStatPage({ spells }: SpellProps) {
   const [selectedSpells, setSelectedSpells] = useState<Spell[]>([]);
 
+  //   useEffect(() => {
+  //     for (const spell of spells) {
+  //       fetchSpell(spell.index).then((spell) => {
+  //         console.log("after .then: " + JSON.stringify(spell));
+  //         setSelectedSpells([...selectedSpells, spell]);
+  //       });
+  //       // break;
+  //     }
+  //   }, []);
+
   useEffect(() => {
-    for (const spell of spells) {
+    let ignore = false;
+    spells.forEach((spell) =>
       fetchSpell(spell.index).then((spell) => {
-        console.log("after .then: " + JSON.stringify(spell));
-        setSelectedSpells([...selectedSpells, spell]);
-      });
-      // break;
-    }
+        if (!ignore) {
+          setSelectedSpells((prev) => [...prev, spell]);
+        }
+      })
+    );
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   if (selectedSpells.length > 0) {

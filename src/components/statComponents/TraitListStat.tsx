@@ -9,14 +9,28 @@ interface TraitProps {
 export default function TraitListStatPage({ traits }: TraitProps) {
   const [selectedTraits, setSelectedTraits] = useState<Trait[]>([]);
 
+  //   useEffect(() => {
+  //     for (const trait of traits) {
+  //       fetchTrait(trait.index).then((trait) => {
+  //         console.log("after .then: " + JSON.stringify(trait));
+  //         setSelectedTraits([...selectedTraits, trait]);
+  //       });
+  //       // break;
+  //     }
+  //   }, []);
   useEffect(() => {
-    for (const trait of traits) {
+    let ignore = false;
+    traits.forEach((trait) =>
       fetchTrait(trait.index).then((trait) => {
-        console.log("after .then: " + JSON.stringify(trait));
-        setSelectedTraits([...selectedTraits, trait]);
-      });
-      // break;
-    }
+        if (!ignore) {
+          // console.log("after .then: " + JSON.stringify(equip));
+          setSelectedTraits((prev) => [...prev, trait]);
+        }
+      })
+    );
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   if (selectedTraits.length > 0) {
