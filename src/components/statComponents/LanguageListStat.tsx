@@ -11,13 +11,17 @@ export default function LangListStatPage({ langs }: LangProps) {
   const [selectedLangs, setSelectedLangs] = useState<Language[]>([]);
 
   useEffect(() => {
-    for (const lang of langs) {
-      fetchLanguage(lang.index).then((lang) => {
-        console.log("after .then: " + JSON.stringify(lang));
-        setSelectedLangs([...selectedLangs, lang]);
-      });
-      // break;
-    }
+    let ignore = false;
+    langs.forEach(lang =>
+      fetchLanguage(lang.index)
+      .then((lang) => {
+          if(!ignore){
+                  // console.log("after .then: " + JSON.stringify(lang));
+                  setSelectedLangs((prev) => [...prev, lang]);
+                }
+                })
+          )
+    return () => { ignore = true }
   }, []);
 
   if (selectedLangs.length > 0) {
