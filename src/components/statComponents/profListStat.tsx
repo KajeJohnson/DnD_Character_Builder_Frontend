@@ -10,13 +10,17 @@ export default function ProfListStatPage({ profs }: ProfProps) {
   const [selectedProfs, setSelectedProfs] = useState<Proficiency[]>([]);
 
   useEffect(() => {
-    for (const prof of profs) {
-      fetchProficiency(prof.index).then((prof) => {
-        console.log("after .then: " + JSON.stringify(prof));
-        setSelectedProfs([...selectedProfs, prof]);
-      });
-      // break;
-    }
+    let ignore = false;
+    profs.forEach(prof =>
+      fetchProficiency(prof.index)
+      .then((prof) => {
+          if(!ignore){
+                  // console.log("after .then: " + JSON.stringify(prof));
+                  setSelectedProfs((prev) => [...prev, prof]);
+                }
+                })
+          )
+    return () => { ignore = true }
   }, []);
 
   if (selectedProfs.length > 0) {
