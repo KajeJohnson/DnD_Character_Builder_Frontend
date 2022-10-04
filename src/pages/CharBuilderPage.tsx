@@ -25,8 +25,13 @@ import { addCharacter } from "../services/character.service";
 import { useNavigate } from "react-router-dom";
 import { stringify } from "querystring";
 import { AuthContext } from "../context/auth.context";
-import { fetchAlignment, fetchClass, fetchRace } from "../services/builder.service";
+import {
+  fetchAlignment,
+  fetchClass,
+  fetchRace,
+} from "../services/builder.service";
 import NavBar from "../components/navbar";
+import wyzeguhye from "../img/wyzeguhye.png";
 
 export default function CharBuilder() {
   const level = 1;
@@ -85,19 +90,19 @@ export default function CharBuilder() {
   }, []);
 
   function appendSpells(chosenSpells: Spell[]) {
-    // console.log("chosen spells " + chosenSpells); 
+    // console.log("chosen spells " + chosenSpells);
     setSpells(chosenSpells);
     // console.log(JSON.stringify(chosenSpells));
   }
 
   function appendProficiencies(chosenProfs: Proficiency[]) {
-    // console.log('chosen proficiencies ' + chosenProfs); 
+    // console.log('chosen proficiencies ' + chosenProfs);
     setProficiencies(chosenProfs);
     // console.log(JSON.stringify(chosenProfs));
   }
 
   function appendLanguages(chosenLangs: Language[]) {
-    // console.log('chosen languages ' + chosenLangs); 
+    // console.log('chosen languages ' + chosenLangs);
     setLanguages(chosenLangs);
     // console.log(JSON.stringify(chosenLangs));
   }
@@ -145,13 +150,13 @@ export default function CharBuilder() {
       languages: languages,
       equipment: equipments,
       features: features,
-      traits: traits
+      traits: traits,
     });
     navigate("/homepage");
-    console.log('class ' + character?.characterClass);
-    console.log('race ' + character?.race);
-    console.log('alignment ' + character?.alignment);
-    console.log(character)
+    console.log("class " + character?.characterClass);
+    console.log("race " + character?.race);
+    console.log("alignment " + character?.alignment);
+    console.log(character);
   }
   //get list characters at endpoint and display them
 
@@ -167,180 +172,191 @@ export default function CharBuilder() {
           </p>
 
           <div style={styles.box}>
+            <label htmlFor="name">
+              Name yer character:
+              <input
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
 
-          <label htmlFor="name">
-            Name yer character:
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
+            <label htmlFor="race">
+              Select yer race:
+              <select
+                onChange={(e: any) =>
+                  setRace(races.find((race) => race.index === e.target.value))
+                }
+                aria-label="Select Character Race"
+                name="race"
+              >
+                <option value=""></option>
+                <option value="dragonborn">Dragonborn</option>
+                <option value="dwarf">Dwarf</option>
+                <option value="elf">Elf</option>
+                <option value="gnome">Gnome</option>
+                <option value="half-elf">Half-Elf</option>
+                <option value="half-orc">Half-Orc</option>
+                <option value="halfling">Halfling</option>
+                <option value="human">Human</option>
+                <option value="tiefling">Tiefling</option>
+              </select>
+            </label>
 
-          <label htmlFor="race">
-            Select yer race:
-          <select
-            onChange={(e: any) =>
-              setRace(races.find((race)=> race.index === e.target.value))
-            }
-            aria-label="Select Character Race"
-            name="race"
-          >
-            <option value=""></option>
-            <option value="dragonborn">Dragonborn</option>
-            <option value="dwarf">Dwarf</option>
-            <option value="elf">Elf</option>
-            <option value="gnome">Gnome</option>
-            <option value="half-elf">Half-Elf</option>
-            <option value="half-orc">Half-Orc</option>
-            <option value="halfling">Halfling</option>
-            <option value="human">Human</option>
-            <option value="tiefling">Tiefling</option>
-          </select>
-          </label>
+            <label htmlFor="class">
+              Select yer class:
+              <select
+                onChange={(e: any) =>
+                  setCharClass(
+                    classes.find(
+                      (charClass) => charClass.index === e.target.value
+                    )
+                  )
+                }
+                aria-label="Select Character Class"
+                name="class"
+              >
+                <option value=""></option>
+                <option value="barbarian">Barbarian</option>
+                <option value="bard">Bard</option>
+                <option value="cleric">Cleric</option>
+                <option value="druid">Druid</option>
+                <option value="fighter">Fighter</option>
+                <option value="monk">Monk</option>
+                <option value="paladin">Paladin</option>
+                <option value="ranger">Ranger</option>
+                <option value="rouge">Rouge</option>
+                <option value="sorcerer">Sorcerer</option>
+                <option value="warlock">Warlock</option>
+                <option value="wizard">Wizard</option>
+              </select>
+            </label>
 
-          <label htmlFor="class">
-            Select yer class:
-          <select
-            onChange={(e: any) =>
-              setCharClass(classes.find((charClass)=> charClass.index === e.target.value))
-            }
-            aria-label="Select Character Class"
-            name="class"
-          >
-            <option value=""></option>
-            <option value="barbarian">Barbarian</option>
-            <option value="bard">Bard</option>
-            <option value="cleric">Cleric</option>
-            <option value="druid">Druid</option>
-            <option value="fighter">Fighter</option>
-            <option value="monk">Monk</option>
-            <option value="paladin">Paladin</option>
-            <option value="ranger">Ranger</option>
-            <option value="rouge">Rouge</option>
-            <option value="sorcerer">Sorcerer</option>
-            <option value="warlock">Warlock</option>
-            <option value="wizard">Wizard</option>
-          </select>
-          </label>
+            <label htmlFor="alignment">
+              Select yer alignment:
+              <select
+                onChange={(e: any) =>
+                  setAlignment(
+                    alignments.find(
+                      (alignment) => alignment.index === e.target.value
+                    )
+                  )
+                }
+                aria-label="Select Character Alignment"
+                name="alignment"
+              >
+                <option value=""></option>
+                <option value="chaotic-evil">Chaotic-Evil</option>
+                <option value="chaotic-good">Chaotic-Good</option>
+                <option value="chaotic-neutral">Chaotic-Neutral</option>
+                <option value="lawful-evil">Lawful-Evil</option>
+                <option value="lawful-good">Lawful-Good</option>
+                <option value="lawful-neutral">Lawful-Neutral</option>
+                <option value="neutral">Neutral</option>
+                <option value="neutral-evil">Neutral-Evil</option>
+                <option value="neutral-good">Neutral-Good</option>
+              </select>
+            </label>
 
-          <label htmlFor="alignment">
-            Select yer alignment:
-          <select
-            onChange={(e: any) =>
-              setAlignment(alignments.find((alignment)=> alignment.index === e.target.value))
-            }
-            aria-label="Select Character Alignment"
-            name="alignment"
-          >
-            <option value=""></option>
-            <option value="chaotic-evil">Chaotic-Evil</option>
-            <option value="chaotic-good">Chaotic-Good</option>
-            <option value="chaotic-neutral">Chaotic-Neutral</option>
-            <option value="lawful-evil">Lawful-Evil</option>
-            <option value="lawful-good">Lawful-Good</option>
-            <option value="lawful-neutral">Lawful-Neutral</option>
-            <option value="neutral">Neutral</option>
-            <option value="neutral-evil">Neutral-Evil</option>
-            <option value="neutral-good">Neutral-Good</option>
-          </select>
-          </label>
+            <label htmlFor="stats">
+              Enter in yer stats:
+              <input
+                type="number"
+                name="strength"
+                value={strength}
+                placeholder="Strength"
+                onChange={(e) => setStrength(Number(e.target.value))}
+              />
+              <input
+                type="number"
+                name="dexterity"
+                value={dexterity}
+                placeholder="Dexterity"
+                onChange={(e) => setDexterity(Number(e.target.value))}
+              />
+              <input
+                type="number"
+                name="constitution"
+                value={constitution}
+                placeholder="Constitution"
+                onChange={(e) => setConstitution(Number(e.target.value))}
+              />
+              <input
+                type="number"
+                name="intelligence"
+                value={intelligence}
+                placeholder="Intelligence"
+                onChange={(e) => setIntelligence(Number(e.target.value))}
+              />
+              <input
+                type="number"
+                name="wisdom"
+                value={wisdom}
+                placeholder="Wisdom"
+                onChange={(e) => setWisdom(Number(e.target.value))}
+              />
+              <input
+                type="number"
+                name="charisma"
+                value={charisma}
+                placeholder="Charisma"
+                onChange={(e) => setCharisma(Number(e.target.value))}
+              />
+            </label>
 
-          <label htmlFor="stats">
-            Enter in yer stats:
-            <input
-              type="number"
-              name="strength"
-              value={strength}
-              placeholder="Strength"
-              onChange={(e) => setStrength(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              name="dexterity"
-              value={dexterity}
-              placeholder="Dexterity"
-              onChange={(e) => setDexterity(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              name="constitution"
-              value={constitution}
-              placeholder="Constitution"
-              onChange={(e) => setConstitution(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              name="intelligence"
-              value={intelligence}
-              placeholder="Intelligence"
-              onChange={(e) => setIntelligence(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              name="wisdom"
-              value={wisdom}
-              placeholder="Wisdom"
-              onChange={(e) => setWisdom(Number(e.target.value))}
-            />
-            <input
-              type="number"
-              name="charisma"
-              value={charisma}
-              placeholder="Charisma"
-              onChange={(e) => setCharisma(Number(e.target.value))}
-            />
-          </label>
+            <label htmlFor="AC">
+              Enter in yer armor class:
+              <input
+                type="number"
+                name="armorClass"
+                value={armorClass}
+                placeholder="Armor Class"
+                onChange={(e) => setArmorClass(Number(e.target.value))}
+              />
+            </label>
 
-          <label htmlFor="AC">
-            Enter in yer armor class:
-            <input
-              type="number"
-              name="armorClass"
-              value={armorClass}
-              placeholder="Armor Class"
-              onChange={(e) => setArmorClass(Number(e.target.value))}
-            />
-          </label>
+            <label htmlFor="speed">
+              Enter in yer speed:
+              <input
+                type="string"
+                name="speed"
+                value={speed}
+                placeholder="Speed"
+                onChange={(e) => setSpeed(e.target.value)}
+              />
+            </label>
 
-          <label htmlFor="speed">
-            Enter in yer speed:
-            <input
-              type="string"
-              name="speed"
-              value={speed}
-              placeholder="Speed"
-              onChange={(e) => setSpeed(e.target.value)}
-            />
-          </label>
-
-          <label htmlFor="hitPoints">
-            Enter in yer hit points:
-            <input
-              type="number"
-              name="hitPoints"
-              value={hitPoints}
-              placeholder="Hit Points"
-              onChange={(e) => setHitPoints(Number(e.target.value))}
-            />
-          </label>
+            <label htmlFor="hitPoints">
+              Enter in yer hit points:
+              <input
+                type="number"
+                name="hitPoints"
+                value={hitPoints}
+                placeholder="Hit Points"
+                onChange={(e) => setHitPoints(Number(e.target.value))}
+              />
+            </label>
           </div>
-            <div style={styles.lists}>
-          <SpellListBuilder onChange={appendSpells} />
+          <div style={styles.lists}>
+            <SpellListBuilder onChange={appendSpells} />
 
-          <ProficiencyListBuilder onChange={appendProficiencies} />
+            <ProficiencyListBuilder onChange={appendProficiencies} />
 
-          <LanguageListBuilder onChange={appendLanguages} />
+            <LanguageListBuilder onChange={appendLanguages} />
 
-          <EquipmentListBuilder onChange={appendEquipment} />
+            <EquipmentListBuilder onChange={appendEquipment} />
 
-          <FeatureListBuilder onChange={appendFeatures} />
+            <FeatureListBuilder onChange={appendFeatures} />
 
-          <TraitListBuilder onChange={appendTraits} />
-            </div>
+            <TraitListBuilder onChange={appendTraits} />
+          </div>
 
-          <button style={{margin: "30px", padding: "10px"}} onClick={handleSubmit} type="submit">
+          <button
+            style={{ margin: "30px", padding: "10px" }}
+            onClick={handleSubmit}
+            type="submit"
+          >
             submit character
           </button>
         </form>
@@ -349,36 +365,39 @@ export default function CharBuilder() {
   );
 }
 
-
+{
+}
 const styles = {
   container: {
-      height: "100vh",
-      margin: "0",
-      overflowY: "auto",
-      overflowX: "hidden",
-      backgroundColor: "#000",
-      backgroundPosition: "center",
-      position: "fixed",
-      padding: "0",
-      color: "#fff",
-      top: "0",
-      left: "0",
-      minWidth: "100%",
-      minHeight: "100%",
+    height: "100vh",
+    margin: "0",
+    overflowY: "auto",
+    overflowX: "hidden",
+    backgroundImage: `url(${wyzeguhye})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+
+    backgroundPosition: "center",
+    position: "fixed",
+    minWidth: "100%",
+    minHeight: "100%",
+    padding: "0",
+    // color: "#fff",
+    top: "0",
+    left: "0",
   },
   box: {
-      display: "flex",
-      flexDisplay: "row",
-      justifyContent: "space-between",
+    display: "flex",
+    flexDisplay: "row",
+    justifyContent: "space-between",
     flexWrap: "wrap",
-      backgroundColor: "#000",
-      padding: "10px",
+    // backgroundColor: "#000",
+    padding: "10px",
   },
   lists: {
     display: "flex",
     flexDisplay: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-  }
+  },
 } as const;
-
