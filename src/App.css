@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+button:active {
+  background: #3c3c3c;
+}
+
+button:focus {
+  background: #3c3c3c;
+}
